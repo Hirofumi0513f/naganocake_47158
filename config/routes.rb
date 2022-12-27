@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
   resources :registrations, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  
 
   namespace :admin do
     root to: "homes#top"
