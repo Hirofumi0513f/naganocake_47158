@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "public/homes#top"
-  get '/home/about', to: "public/homes#about", as: "about"
+  get '/about', to: "public/homes#about", as: "about"
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
   resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
   resources :registrations, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
-  
+
+  devise_for:customers,skip: [:passwords],controllers:{
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
   namespace :admin do
     root to: "homes#top"
@@ -18,6 +22,10 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
     resources :orders, only: [:show, :update]
     resources :sessions, only: [:new, :create, :destroy]
+
+    devise_for:admin,skip: [:registrations, :passwords],controllers:{
+      sessions: "admin/sessions"
+    }
   end
 
 end
