@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+    devise_for:admin,skip: [:registrations, :passwords],controllers:{
+    sessions: "admin/sessions"
+    }
   root to: "public/homes#top"
   get '/about', to: "public/homes#about", as: "about"
 
@@ -35,9 +38,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :sessions, only: [:new, :create, :destroy]
 
-    devise_for:admin,skip: [:registrations, :passwords],controllers:{
-      sessions: "admin/sessions"
-    }
   end
+
 
 end
