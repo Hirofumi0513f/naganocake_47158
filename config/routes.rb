@@ -8,8 +8,6 @@ Rails.application.routes.draw do
       sessions: "admin/sessions"
     }
 
-
-
   root to: "public/homes#top"
   get '/about', to: "public/homes#about", as: "about"
 
@@ -39,7 +37,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :order_details, only: [:update]
     resources :orders, only: [:show, :update]
-    resources :sessions, only: [:new, :create, :destroy]
+    #resources :sessions, only: [:new, :create, :destroy]
 
   end
 
