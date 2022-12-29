@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-    devise_for:admin,skip: [:registrations, :passwords],controllers:{
-    sessions: "admin/sessions"
+    devise_for:customers,skip: [:passwords],controllers:{
+      registrations: "public/registrations",
+      sessions: 'public/sessions'
     }
+
+    devise_for:admin,skip: [:registrations, :passwords],controllers:{
+      sessions: "admin/sessions"
+    }
+
+
+
   root to: "public/homes#top"
   get '/about', to: "public/homes#about", as: "about"
 
@@ -23,11 +31,6 @@ Rails.application.routes.draw do
   resources :registrations, only: [:new, :create]
 
   resources :sessions, only: [:new, :create, :destroy]
-
-  devise_for:customers,skip: [:passwords],controllers:{
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
 
   namespace :admin do
     root to: "homes#top"
