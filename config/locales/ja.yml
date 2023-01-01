@@ -37,3 +37,12 @@ ja:
         pudding    :"プリン"
         baked_goods:"焼き菓子"
         candy      :"キャンディ"
+
+ja:
+  enums:
+    order_details:
+      is_active:
+        cannot_start          :"着手不可"
+        waiting_for_production:"制作待ち"
+        production            :"制作中"
+        production_finished   :"制作終了"
