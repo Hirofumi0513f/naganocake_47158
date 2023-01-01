@@ -28,3 +28,12 @@ ja:
         production          :"制作中"
         shipping_preparation:"発送準備中"
         sent                :"発送済み"
+
+ja:
+  enums:
+    genre:
+      name:
+        cake       :"ケーキ"
+        pudding    :"プリン"
+        baked_goods:"焼き菓子"
+        candy      :"キャンディ"
