@@ -60,3 +60,5 @@ gem 'devise'
 gem 'kaminari'
 
 gem 'kaminari-bootstrap'
+
+gem 'enum_help'

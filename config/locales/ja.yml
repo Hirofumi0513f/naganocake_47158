@@ -1,0 +1,13 @@
+ja:
+  enums:
+    item:
+      is_active:
+      on_sale :"販売中"
+      sold_out:"売切れ"
+
+ja:
+  enums:
+    customer:
+      is_deleted:
+        valid.    :"有効"
+        withdrawal:"退会"
