@@ -9,5 +9,5 @@ ja:
   enums:
     customer:
       is_deleted:
-        valid.    :"有効"
-        withdrawal:"退会"
+        Valid.    :"有効"
+        Withdrawal:"退会"
