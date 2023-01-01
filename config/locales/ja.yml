@@ -11,3 +11,20 @@ ja:
       is_deleted:
         Valid.    :"有効"
         Withdrawal:"退会"
+
+ja:
+  enums:
+    order:
+      payment:
+        credit_card:"クレジットカード"
+        transfer   :"銀行振込"
+
+ja:
+  enums:
+    order:
+      is_active:
+        waiting_for_payment :"入金待ち"
+        payment_confirmation:"入金確認"
+        production          :"制作中"
+        shipping_preparation:"発送準備中"
+        sent                :"発送済み"
