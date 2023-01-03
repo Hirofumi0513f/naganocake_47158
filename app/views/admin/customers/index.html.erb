@@ -15,7 +15,11 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= customer.id %></td>
-        <td><%= customer.name %></td>
+        <td>
+          <%= link_to customer_path do %>
+            <%= customer.name %>
+          <% end 
+        </td>
         <td></td>
         <td><%= customer.email %></td>
         <td><%= customer.is_deleted %></td>
