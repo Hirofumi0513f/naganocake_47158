@@ -2,47 +2,47 @@ ja:
   enums:
     item:
       is_active:
-      on_sale :"販売中"
-      sold_out:"売切れ"
+      on_sale : "販売中"
+      sold_out: "売切れ"
 
 ja:
   enums:
     customer:
       is_deleted:
-        Valid.    :"有効"
-        Withdrawal:"退会"
+        Valid     : "有効"
+        Withdrawal: "退会"
 
 ja:
   enums:
     order:
       payment:
-        credit_card:"クレジットカード"
-        transfer   :"銀行振込"
+        credit_card: "クレジットカード"
+        transfer   : "銀行振込"
 
 ja:
   enums:
     order:
       is_active:
-        waiting_for_payment :"入金待ち"
-        payment_confirmation:"入金確認"
-        production          :"制作中"
-        shipping_preparation:"発送準備中"
-        sent                :"発送済み"
+        waiting_for_payment : "入金待ち"
+        payment_confirmation: "入金確認"
+        production          : "制作中"
+        shipping_preparation: "発送準備中"
+        sent                : "発送済み"
 
 ja:
   enums:
     genre:
       name:
-        cake       :"ケーキ"
-        pudding    :"プリン"
-        baked_goods:"焼き菓子"
-        candy      :"キャンディ"
+        cake       : "ケーキ"
+        pudding    : "プリン"
+        baked_goods: "焼き菓子"
+        candy      : "キャンディ"
 
 ja:
   enums:
     order_details:
       is_active:
-        cannot_start          :"着手不可"
-        waiting_for_production:"制作待ち"
-        production            :"制作中"
-        production_finished   :"制作終了"
+        cannot_start          : "着手不可"
+        waiting_for_production: "制作待ち"
+        production            : "制作中"
+        production_finished   : "制作終了"
