@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
   def index
+    @generes = Genre.all
   end
 
   def create
@@ -12,7 +13,7 @@ class Admin::GenresController < ApplicationController
   end
 
   private
-  #商品画面に画像を追加する機能を追加するために記載。2023/1/1
+  # 商品画面に画像を追加する機能を追加するために記載。2023/1/1
   def genres_params
     params.require(:admin).permit(:image)
   end
