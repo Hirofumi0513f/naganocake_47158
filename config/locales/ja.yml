@@ -1,5 +1,7 @@
-ja: #一番初めのみ記載。以後はモデル（テーブル名）から先を記載する
-  enums:　#一番初めのみ記載。以後はモデル（テーブル名）から先を記載するｓ
+#ja   :一番初めのみ記載。以後はモデル（テーブル名）から先を記載する
+#enums:一番初めのみ記載。以後はモデル（テーブル名）から先を記載する
+ja:
+  enums:
     orders:
       payment_method:
         credit_card: "クレジットカード"
@@ -11,7 +13,6 @@ ja: #一番初めのみ記載。以後はモデル（テーブル名）から先
         production          : "制作中"
         shipping_preparation: "発送準備中"
         sent                : "発送済み"
-
 
     order_details:
       making_status:
