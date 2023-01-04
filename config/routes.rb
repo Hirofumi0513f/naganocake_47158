@@ -26,9 +26,7 @@ Rails.application.routes.draw do
   post '/orders/confilm' , to: "orders#confilm", as: "confilm"
   get  '/orders/complete', to: "orders#complete", as: "complete"
 
-  resources :registrations, only: [:new, :create]
 
-  resources :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
     root to: "homes#top"

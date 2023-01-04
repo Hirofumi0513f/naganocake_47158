@@ -5,23 +5,18 @@ ja:
       on_sale : "販売中"
       sold_out: "売切れ"
 
-ja:
-  enums:
+
     customer:
       is_deleted:
         Valid     : "有効"
         Withdrawal: "退会"
 
-ja:
-  enums:
+
     order:
       payment:
         credit_card: "クレジットカード"
         transfer   : "銀行振込"
 
-ja:
-  enums:
-    order:
       is_active:
         waiting_for_payment : "入金待ち"
         payment_confirmation: "入金確認"
@@ -29,8 +24,7 @@ ja:
         shipping_preparation: "発送準備中"
         sent                : "発送済み"
 
-ja:
-  enums:
+
     genre:
       name:
         cake       : "ケーキ"
@@ -38,8 +32,7 @@ ja:
         baked_goods: "焼き菓子"
         candy      : "キャンディ"
 
-ja:
-  enums:
+
     order_details:
       is_active:
         cannot_start          : "着手不可"
