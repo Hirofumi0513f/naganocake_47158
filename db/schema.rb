@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2023_01_01_230322) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.integer "name", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,10 +98,10 @@ ActiveRecord::Schema.define(version: 2023_01_01_230322) do
   create_table "items", force: :cascade do |t|
     t.integer "genre_id", null: false
     t.string "name", null: false
-    t.string "item_phote", null: false
+    t.string "image", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.integer "is_active", default: 0, null: false
+    t.boolean "is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2023_01_01_230322) do
     t.integer "order_id", null: false
     t.integer "items_id", null: false
     t.integer "amount", null: false
-    t.integer "is_active", null: false
+    t.integer "making_status", null: false
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(version: 2023_01_01_230322) do
     t.string "address", null: false
     t.string "name", null: false
     t.integer "postage", default: 800, null: false
-    t.integer "payment", null: false
-    t.integer "is_active", null: false
+    t.integer "payment_method", null: false
+    t.integer "status", null: false
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
