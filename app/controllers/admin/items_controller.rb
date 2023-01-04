@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   # ↓ログイン済ユーザーのみにアクセスを許可する
-  # before_action :authenticate_admin!
+  before_action :authenticate_admin!
+
   def index
     # kaminariを用いてページネーションを実装。商品id順に1ページあたり10件表示されるようにする。
     @items = Item.order(:id).page(params[:page]).per(10)
