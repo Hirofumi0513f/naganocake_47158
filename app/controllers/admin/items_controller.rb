@@ -13,16 +13,15 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.genre.id = genre.id
-    @item.save
-    redirect_to admin_items_path
+    if @item.save
+      flash[:notice] = "Item was successfully created."
+      redirect_to admin_items_path
   end
 
   def show
     @itemf = Item.find(params[:id])
     @genre = @item.genres
     @item = Item.new
-
   end
 
   def edit
@@ -34,8 +33,8 @@ class Admin::ItemsController < ApplicationController
 
   # 以下ストロングパラメータ
   private
-
-  def item_params
-    params.require(:item).permit(:item_photo, :name, :introduction, :genre_id, :price, :is_active)
+    def item_params
+      params.require(:item).permit(:item_photo, :name, :introduction, :genre_id, :price, :is_active)
+    end
   end
 end

@@ -12,20 +12,8 @@
   </thead>
 
   <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= customer.id %></td>
-        <td>
-          <%= link_to customer_path do %>
-            <%= customer.name %>
-          <% end 
-        </td>
-        <td></td>
-        <td><%= customer.email %></td>
-        <td><%= customer.is_deleted %></td>
-      </tr>
-    <% end %>
+
   </tbody>
 </table>
 <!--↓ページネーションを表示させるための記述-->
-<%= paginate @items %>
+<%= paginate @customers %>
