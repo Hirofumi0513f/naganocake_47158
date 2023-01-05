@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  # ↓ログイン済ユーザーのみにアクセスを許可する
+  # ↓管理者ユーザーのみにアクセスを許可する
   before_action :authenticate_admin!
 
   def index
