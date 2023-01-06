@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>商品ID</th>
       <th>商品名</th>
       <th></th>
@@ -16,6 +17,13 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
+        <td>
+          <% if @item.item_photo.attached? %>
+            <%= image_tag item.item_photo, size:"200×200" %>
+          <% else %>
+            <%= image_tag 'no_image',size: "200×200" %>
+          <% end %>
+        </td>
         <td><%= item.id %></td>
         <td><%= item.name %></td>
         <td><%= item.price %></td>

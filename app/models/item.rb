@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
-  # itemモデルにimageを持たせる
-  has_one_attached :image
+  # itemモデルにitem_photo(商品画像)を持たせる
+  has_one_attached :item_photo
 
   belongs_to :genre
   # has_many   :cart_items  , dependent: :destory
