@@ -32,6 +32,13 @@ class Admin::ItemsController < ApplicationController
     end
 
     def update
+      @itemf = Item.find(params[:id])
+      if itemf.update(item_params)
+        flash[:notice] = "Item updated succssfully."
+        redirect_to admin_item_path(@itemf.id)
+      else
+        render :edit
+      end
     end
 
     # 以下ストロングパラメータ

@@ -1,43 +1,50 @@
-<h4>商品一覧</h4>
-<ul><%= link_to "新規登録ボタン設置",new_admin_item_path %></ul>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-      <th colspan = "6"></th>
-    </tr>
-  </thead>
+<div class = "container">
+  <div class ="row">
+    <h4 class = "bg-light">商品一覧</h4>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td>
-          <% if item.image.attached? %>
-            <%= image_tag item.image,size: "200×200" %>
-          <% else %>
-            <%= image_tag 'no_image',size: "200×200" %>
-          <% end %>
-        </td>
-        <td><%= item.id %></td>
-        <td><%= item.name %></td>
-        <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
-        <td><%= item.price.to_s(:delimited) %></td>
-        <td><%= item.genre.name %></td>
-        <td>
-          <% if item.is_active == false %>
-            販売中
-          <% else %>
-            売切れ
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<!--↓ページネーションを表示させるための記述-->
-<%= paginate @items %>
+      <div class ="text-right">
+        <button class = "btn">
+          <%= link_to "新規登録ボタン設置",new_admin_item_path %>
+        </button>
+      </div>
+
+      <table class = "table">
+        <thead class ="bg-light">
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+            <th colspan = "6"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td>
+              <%= link_to admin_item_path(item.id) do %>
+                <%= item.name %>
+              <% end %>
+            </td>
+            <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
+            <td><%= item.price.to_s(:delimited) %></td>
+            <td><%= item.genre.name %></td>
+            <td>
+              <% if item.is_active == false %>
+                <p class = "text-success">販売中</p>
+              <% else %>
+                <p class = "text-muted">売切れ</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+        <!--↓ページネーションを表示させるための記述。詳細設定は、app/view/kaminariを参照-->
+        <%= paginate @items %>
+
+  </div>
+</div>
+

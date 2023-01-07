@@ -1,8 +1,11 @@
 <div class = "container">
     <div class = "row">
       <h4>商品詳細</h4>
+      <div class = "left">
+        <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
+        <%= image_tag @itemf.get_item_image(100,100) %>
+      </div>
         <table>
-            <td><%= image_tag @itemf.get_item_image(100,100) %></td>
             <td>
                 <label>商品名</label>
                 <%= @itemf.name %>

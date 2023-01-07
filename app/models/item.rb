@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   # has_many   :cart_items  , dependent: :destory
   # has_many   :order_detils, dependent: :destory
 
-  # 消費税を加えた商品価格の定義
+  # 消費税を加えた商品価格のメソッドｓ
   # round:小数点の切り上げを実施
   def add_tax_price
     (self.price * 1.1).round
