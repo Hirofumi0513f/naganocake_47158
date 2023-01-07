@@ -1,10 +1,20 @@
-<h4>test_createで導入する方法は質問する</h4>
 <h4>商品新規登録</h4>
+<!--新規登録が失敗した際のエラーメッセージの表示記述-->
+<!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+    <% if @item.errors.any? %>
+        <%= @item.errors.count %>件のエラーが発生しました
+        <ul>
+            <% @item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
 <!--local: ture→通常のHTTPリクエストし、ページ全体をリロードさせるコマンド？-->
     <%= form_with model: @item,url:admin_items_path,local:true do |f| %>
         <div>
-            <%= f.label :item_photo,"商品画像" %>
-            <%= f.file_field :item_photo, accept: "image/*" %>
+            <%= f.label :image,"商品画像" %>
+            <%= f.file_field :image, accept: "image/*" %>
         </div>
         <div>
             <%= f.label :name,"商品名" %>

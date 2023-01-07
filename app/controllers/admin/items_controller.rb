@@ -18,8 +18,7 @@ class Admin::ItemsController < ApplicationController
         flash[:notice] = "Item was successfully created."
         redirect_to admin_items_path
       else
-        @items = Item.all
-        render :index
+        render :new
       end
     end
 
@@ -37,6 +36,7 @@ class Admin::ItemsController < ApplicationController
     end
 
     # 以下ストロングパラメータ
+    # 意図しないデータの登録・更新を防ぐ機能
     private
       def item_params
         params.require(:item).permit(:image, :name, :introduction, :genre_id, :price, :is_active)
