@@ -1,4 +1,4 @@
-<h2>商品一覧</h2>
+<h4>商品一覧</h4>
 <ul><%= link_to "新規登録ボタン設置",new_admin_item_path %></ul>
 <table>
   <thead>
@@ -25,7 +25,8 @@
         </td>
         <td><%= item.id %></td>
         <td><%= item.name %></td>
-        <td><%= item.price %></td>
+        <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
+        <td><%= item.price.to_s(:delimited) %></td>
         <td><%= item.genre.name %></td>
         <td>
           <% if item.is_active == false %>
@@ -33,7 +34,6 @@
           <% else %>
             売切れ
           <% end %>
-
         </td>
       </tr>
     <% end %>
