@@ -12,6 +12,13 @@
 
   <body>
     <header>
+      <nav class = "nabver navber-expand-lg navbar-dark bg-dark">
+        <div class = "container">
+          <%= link_to new_admin_session_path, class: 'navbar-brand' do %>
+            <span>LOGO（admin_signed_in画面へ最終的には削除）</span>
+          <% end %>
+        </div>
+      </nav>
       <% if request.fullpath.include?("/admin")  &&  admin_signed_in? %>
           <li>
             <%= link_to "商品一覧",admin_items_path %>

@@ -33,7 +33,7 @@ class Admin::ItemsController < ApplicationController
 
     def update
       @itemf = Item.find(params[:id])
-      if itemf.update(item_params)
+      if @itemf.update(item_params)
         flash[:notice] = "Item updated succssfully."
         redirect_to admin_item_path(@itemf.id)
       else
