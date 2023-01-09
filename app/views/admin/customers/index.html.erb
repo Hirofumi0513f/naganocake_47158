@@ -1,31 +1,41 @@
 <div class = "container">
   <div class = "row">
-    <h4 class = "bg-light">会員一覧</h4>
-    <table calss = "table">
+    <h4 class="bg-light">会員一覧</h4>
+
+    <table class = "table">
       <thead class = "bg-light">
         <tr>
           <th>会員ID</th>
           <th>氏名</th>
           <th>メールアドレス</th>
           <th>ステータス</th>
+          <th colspan = "4"></th>
         </tr>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <!--会員のフルネームを押下して会員詳細ページへ飛ばす-->
+            <td><%= customer.id %></td>
             <td>
-              <%= customer.id %>
+              <!--会員のフルネームを押下して会員詳細ページへ飛ばす-->
+              <%= link_to admin_customer_path(customer.id) do %>
+                <!--full_nameは、app/models/customers.rbで定義している-->
+                <%= customer.full_name %>
+              <% end %>
             </td>
-            <!--full_nameは、app/models/customers.rbで定義している-->
-            <td><%= customer.full_name %></td>
             <td><%= customer.email %></td>
-            <td><%= customer.is_deleted %></td>
+            <td>
+              <% if customer.is_deleted == false %>
+                <div class = "text-success">有効</div>
+              <% else %>
+                <div class = "text-muted">退会</div>
+              <% end %>
+            </td>
           </tr>
         <% end %>
-        <!--↓ページネーションを表示させるための記述-->
-        <%= paginate @customers %>
       </tbody>
     </table>
+    <!--↓ページネーションを表示させるための記述-->
+    <%= paginate @customers %>
   </div>
 </div>

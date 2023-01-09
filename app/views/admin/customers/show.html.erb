@@ -1,15 +1,55 @@
 <div class = "container">
   <div class = "row">
-    <h5 class = "bg-light"><%= @customerf.full_name %>さんの会員詳細</h5>
-    
-    <table>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      <tr></tr>
-      
+    <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h5 class = "bg-light"><%= @customerf.full_name %>さんの会員詳細</h5>
+
+      <table>
+        <tr>
+          <th>会員ID</th>
+          <td><%= @customerf.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <!--姓（last_name）と名（first_name）の間に空白を入れる記述-->
+          <td><%= @customerf.last_name + " " + @customerf.first_name %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <!--フリガナ姓（last_name_kana）とフリガナ名（first_name_kana）の間に空白を入れる記述-->
+          <td><%= @customerf.last_name_kana + " " + @customerf.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @customerf.postal_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @customerf.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customerf.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customerf.email %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <td>
+            <% if @customerf.is_deleted == false %>
+              <div class = "text-success">有効</div>
+            <% else %>
+              <div class = "text-muted">退会</div>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= link_to "編集する",edit_admin_customer_path(@customerf.id),class: 'btn btn-md btn-success' %></td>
+          <td><%= link_to "注文一覧を見る",admin_root_path,class: 'btn btn-md btn-primary' %></td>
+        </tr>
     </table>
+    </div>
   </div>
 </div>
