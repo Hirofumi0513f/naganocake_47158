@@ -14,58 +14,96 @@
     <header>
       <nav class = "nabver navber-expand-lg navbar-dark bg-dark">
         <div class = "container">
-          <%= link_to root_path, class: 'navbar-brand' do %>
+          <%= link_to root_path, class: 'navbar-brand navbar_mainLogo' do %>
             <span>LOGO</span>
           <% end %>
-
-          <%= link_to new_admin_session_path, class: 'navbar-brand' do %>
-            <span>（admin_signed_in画面へ最終的には削除）</span>
+           <%= link_to new_admin_session_path, class: 'navbar-brand' do %>
+            <span>（admin_signed_in画面へ最終的には削除/レイアウトも最後に修正）</span>
           <% end %>
-        </div>
-      </nav>
-      <% if request.fullpath.include?("/admin")  &&  admin_signed_in? %>
-          <li>
-            <%= link_to "商品一覧",admin_items_path %>
-          </li>
-          <li>
-            <%= link_to "会員一覧",admin_customers_path %>
-          </li>
-          <li>
-            <%= link_to "注文履歴一覧",admin_root_path %>
-          </li>
-          <li>
-            <%= link_to "ジャンル一覧",admin_genres_path %>
-          </li>
-          <li>
-            <%= link_to "ログアウト",destroy_admin_session_path, method: :delete %>
-          </li>
-      <% elsif customer_signed_in? %>
-          <li>
-            <%= link_to "マイページ",customer_path(current_customer) %>
-          </li>
-          <li>
-            <%= link_to "商品一覧",items_path %>
+
+          <button class ="navbar-toggler" type ="button" data-toggle ="collapse" data-target ="#navbarNavDropdown" aria-controls ="navbarNavDropdown" aria-expanded ="false" aria-label ="Toggle navigation">
+            <span class ="navbar-toggler-icon"></span>
+          </button>
+
+<div class = "collapse navbar-collapse" id = "nabverNavDropdown">
+        <ul class ="navbar-nav ml-auto">
+          <% if request.fullpath.include?("/admin")  &&  admin_signed_in? %>
+            <li>
+              <%= link_to admin_items_path ,class: 'nav-link text-light' do %>
+                <!--試しにbookers2のアイコンを挿入-->
+                <i class = "fas fa-home"></i>
+                商品一覧
+              <% end %>
             </li>
-          <li>
-            <%=link_to "カート",cart_items_path %>
-          </li>
-          <li>
-            <%= link_to "ログアウト",destroy_customer_session_path, method: :delete %>
-          </li>
-      <% else %>
-        <li>
-          <%= link_to "About",about_path %>
-        </li>
-        <li>
-          <%= link_to "商品一覧",items_path %>
-        </li>
-        <li>
-          <%= link_to "新規登録",new_customer_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン",new_customer_session_path %>
-        </li>
-      <% end %>
+            <li>
+              <%= link_to admin_customers_path,class: 'nav-link text-light' do  %>
+                会員一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_root_path,class: 'nav-link text-light' do %>
+                注文履歴一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_genres_path,class: 'nav-link text-light' do %>
+                ジャンル一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path,class: 'nav-link text-light' ,method: :delete do %>
+                ログアウト
+              <% end %>
+            </li>
+          <% elsif customer_signed_in? %>
+            <li>
+              <%= link_to customer_path(current_customer),class: 'nav-link text-light' do %>
+                マイページ
+              <% end %>
+            </li>
+            <li>
+              <%= link_to items_path,class: 'nav-link text-light' do %>
+                商品一覧
+              <% end %>
+            </li>
+            <li>
+              <%=link_to cart_items_path,class: 'nav-link text-light' do %>
+                カート
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_customer_session_path,class: 'nav-link text-light' ,method: :delete do %>
+                ログアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to about_path,class: 'nav-link text-light' do %>
+                About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to items_path,class: 'nav-link text-light' do %>
+                商品一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
+                新規登録
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_customer_session_path,class: 'nav-link text-light' do %>
+                ログイン
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+        </div>
+
+      </nav>
     </header>
     <main>
       <%= notice %>
