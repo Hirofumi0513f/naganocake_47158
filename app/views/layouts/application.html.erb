@@ -14,8 +14,12 @@
     <header>
       <nav class = "nabver navber-expand-lg navbar-dark bg-dark">
         <div class = "container">
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            <span>LOGO</span>
+          <% end %>
+
           <%= link_to new_admin_session_path, class: 'navbar-brand' do %>
-            <span>LOGO（admin_signed_in画面へ最終的には削除）</span>
+            <span>（admin_signed_in画面へ最終的には削除）</span>
           <% end %>
         </div>
       </nav>
