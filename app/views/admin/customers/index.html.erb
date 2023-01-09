@@ -13,7 +13,10 @@
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <td><%= customer.id %></td>
+            <!--会員のフルネームを押下して会員詳細ページへ飛ばす-->
+            <td>
+              <%= customer.id %>
+            </td>
             <!--full_nameは、app/models/customers.rbで定義している-->
             <td><%= customer.full_name %></td>
             <td><%= customer.email %></td>
