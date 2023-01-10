@@ -1,12 +1,11 @@
 <div class = "container">
   <div class ="row">
     <h4 class = "bg-light">商品一覧</h4>
-
-      <div class ="text-right">
-        <button class = "btn">
-          <%= link_to "新規登録ボタン設置",new_admin_item_path %>
-        </button>
-      </div>
+      <button type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">
+        <%= link_to new_admin_item_path do %>
+          <span class = "text-white">+</span>
+        <% end %>
+      </button>
 
       <table class = "table">
         <thead class ="bg-light">
