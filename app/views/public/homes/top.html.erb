@@ -1,12 +1,26 @@
 <div class = "container">
+
   <div class = "row">
-    <h1>【作成中】Customersホーム画面</h1>
+    <td valign ="middle">
+      ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品閲覧はできますが、<br>
+      購入には会員登録が必要になります。
+    </td>
+
   </div>
   <div class = "row">
-    ようこそ、ながのCAKEへ！<br>
-    このサイトは、ケーキ販売のECサイトになります。<br>
-    会員でない方も商品閲覧はできますが、<br>
-    購入には会員登録が必要になります。
+     <h5 class = "bg-light">新着商品</h5>
   </div>
-    <h5 class = "bg-light">新着商品</h5>
+  <div class = "row">
+    <table>
+      <tr>
+        <td><%= @itemf.name %></td>
+      </tr>
+      <tr>
+        <td><%= @itemf.add_tax_price.to_s(:delimited) %>円</td>
+      </tr>
+    </table>
+  </div>
+
 </div>
