@@ -1,26 +1,36 @@
-<div class = "container">
+<div class = "container mx-auto">
 
   <div class = "row">
-    <td valign ="middle">
+    <div>
       ようこそ、ながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品閲覧はできますが、<br>
       購入には会員登録が必要になります。
-    </td>
+    </div>
 
   </div>
   <div class = "row">
      <h5 class = "bg-light">新着商品</h5>
   </div>
   <div class = "row">
-    <table>
-      <tr>
-        <td><%= @itemf.name %></td>
-      </tr>
-      <tr>
-        <td><%= @itemf.add_tax_price.to_s(:delimited) %>円</td>
-      </tr>
-    </table>
+    <!--|item|→ローカル変数を指している。格納データを１つずつ持ってきている。-->
+    <!--each文の内で使用するメソッド-->
+    <div class = "d-flex justify-content-around">
+      <% @items.each do |item| %>
+        <div>
+          <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
+          <div><%= image_tag item.get_item_image(200,200) %></div>
+          <p><%= item.name %></p>
+          <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
+          <p>¥<%= item.price.to_s(:delimited) %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
-
+  <div class = "pull-right">
+    <!--リンクは顧客側商品ができた段階で実装する。-->
+    <%= link_to items_path do %>
+      全ての商品を見る>
+    <% end %>
+  </div>
 </div>
