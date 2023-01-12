@@ -3,6 +3,16 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  # 顧客ログイン後の遷移先ページの指定
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
+  # 顧客ログアウト後の遷移先ページ指定
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
