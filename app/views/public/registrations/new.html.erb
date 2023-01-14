@@ -5,7 +5,7 @@
     <h5 class = "bg-light">新規会員登録</h5>
   </div>
   <div class = "form-row align-items-center">
-    <%= form_with model: @customer,url:new_session_path(resource_name) do |f| %>
+    <%= form_with model: @customer,url:customer_path(resource_name) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
       <div class = "col-auto">
           <!--full_nameの定義は、app/models/customer.rbを参照-->
