@@ -20,4 +20,29 @@ class Customer < ApplicationRecord
 
   # 退会フラグ（is_deleted）のバリデーション設定
   validates :is_deleted, inclusion: {in: [true, false]}
+
+  # 名前（「姓」と「名」）のバリデーション/presenceヘルパーで入力必須にする
+  validates :last_namem, presence: true
+  validates :first_name, presence: true
+
+  # フリガナ（「セイ」と「メイ」）のバリデーション/presenceヘルパーで入力必須にする
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+
+  # メールアドレスのバリデーション/presenceヘルパーで入力必須にする
+  validates :email, presence: true
+
+  # 郵便番号のバリデーション/presenceヘルパーで入力必須にする
+  validates :postal_code, presence: true
+
+  # 住所のバリデーション/presenceヘルパーで入力必須にする
+  validates :adresses, presence: true
+
+  # 電話番号のバリデーション/presenceヘルパーで入力必須にする
+  validates :telephone_number, presence: true
+
+  # 顧客側会員登録画面で使用するパスワードのバリデーション
+  # confirmationヘルパー：２つのテキストフィールドで受け取る内容が完全一致するかを確認するためのヘルパー。
+  validates :encrypted_password, confirmation: true
+  validates :encrypted_password_confirmation, presence: true
 end

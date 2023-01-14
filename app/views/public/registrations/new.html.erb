@@ -4,10 +4,10 @@
     <!--新規会員登録ページのタイトル-->
     <h5 class = "bg-light">新規会員登録</h5>
   </div>
-  <div class = "row">
+  <div class = "form-row align-items-center">
     <%= form_with model: @customer,url:new_session_path(resource_name) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
-      <div class = "field">
+      <div class = "col-auto">
           <!--full_nameの定義は、app/models/customer.rbを参照-->
           <%= f.label :full_name,"名前" %>
           <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
@@ -15,22 +15,36 @@
           <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
           (名)<%= f.text_field :first_name,autocomplete: "first_name",placeholder: "名" %>
       </div>
-      <div class = "field">
+      <div class = "col-auto">
         <%= f.label :full_name_kana, "フリガナ" %>
+        (セイ)<%= f.text_field :last_name_kana,autocomplete: "last_name_kana",placeholder: "セイ" %>
+        (メイ)<%= f.text_field :first_name_kana,autocomplete: "first_name_kana",placeholder: "メイ" %>
       </div>
-      <div class = "field">
+      <div class = "col-auto">
         <%= f.label :email, "メールアドレス" %>
+        <%= f.text_field :email,autocomplete: "email",placeholder: "sample@example.com" %>
       </div>
-      <div class = "field">
+      <div class = "col-auto">
         <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+        <%= f.text_field :postal_code,placeholder: "0001111" %>
       </div>
-      <div class = "field">
+      <div class = "col-auto">
+        <%= f.label :addresses, "住所" %>
+        <%= f.text_field :addresses,placeholder: "東京都千代田区千代田１−１",:size=>45 %>
+      </div>
+      <div class = "col-auto">
+        <%= f.label :telephone_number, "電話番号" %>
+        <%= f.text_field :telephone_number,placeholder: "00011112222" %>
+      </div>
+      <div class = "col-auto">
         <!--パスワードの文字数を制限するやり方を調べる-->
         <%= f.label :encrypted_password, "パスワード（6文字以上）" %>
+        <%= f.text_field :encrypted_password %>
       </div>
-      <div class = "field">
+      <div class = "col-auto">
         <!--パスワードの二重チェックを入れる方法を調べる-->
-        パスワード（確認用）
+        <%= f.label :encrypted_password_confirmation, "パスワード（確認用）" %>
+        <%= f.text_field :encrypted_password_confirmation %>
       </div>
 
       <div class = "actions">
