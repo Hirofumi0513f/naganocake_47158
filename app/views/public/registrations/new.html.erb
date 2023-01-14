@@ -1,21 +1,49 @@
 <!--顧客側「新規会員登録画面」-->
 <div class = "container">
   <div class = "row">
-    <!--下のdivは、Bootstrapでデザインを整えるために使用-->
-    <div>
-      <!--新規会員登録ページのタイトル-->
-      <h5 class = "bg-light">新規会員登録</h5>
+    <!--新規会員登録ページのタイトル-->
+    <h5 class = "bg-light">新規会員登録</h5>
+  </div>
+  <div class = "row">
     <%= form_with model: @customer,url:new_session_path(resource_name) do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
       <div class = "field">
-        <!--full_nameの定義は、app/models/customer.rbを参照-->
-        <%= f.label :full_name,"氏名" %>
+          <!--full_nameの定義は、app/models/customer.rbを参照-->
+          <%= f.label :full_name,"名前" %>
+          <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
+          (姓)<%= f.text_field :last_name,autocomplete: "last_name",placeholder: "姓" %>
+          <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
+          (名)<%= f.text_field :first_name,autocomplete: "first_name",placeholder: "名" %>
+      </div>
+      <div class = "field">
+        <%= f.label :full_name_kana, "フリガナ" %>
+      </div>
+      <div class = "field">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class = "field">
+        <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+      </div>
+      <div class = "field">
+        <!--パスワードの文字数を制限するやり方を調べる-->
+        <%= f.label :encrypted_password, "パスワード（6文字以上）" %>
+      </div>
+      <div class = "field">
+        <!--パスワードの二重チェックを入れる方法を調べる-->
+        パスワード（確認用）
       </div>
 
       <div class = "actions">
         <%= f.submit "新規登録", class:'btn btn-sm btn-success' %>
       </div>
     <% end %>
+  </div>
+  <div class = "row">
+    <!--「こちら」からnew_customer_session_pathに遷移させる-->
+    <h5 class = "bg-light">既に登録済みの方</h5>
+  </div>
+  <div class = "row">
+    <%= link_to"こちら",new_customer_session_path %>　からログインしてください。
   </div>
 </div>
 <%= render "public/shared/error_messages",resource: resource %>
