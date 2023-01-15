@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   def show
+    @cutomerf = Customer.find(params[:id])
   end
 
   def edit
@@ -13,4 +14,5 @@ class Public::CustomersController < ApplicationController
 
   def withdrawal
   end
+
 end
