@@ -5,7 +5,7 @@
     <h5 class = "bg-light">新規会員登録</h5>
   </div>
   <div class = "form-row align-items-center">
-    <%= form_with model: @customer,url:customer_path(resource_name) do |f| %>
+    <%= form_with model: @customer,url:customer_registration_path , local: true do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
       <div class = "col-auto">
           <!--full_nameの定義は、app/models/customer.rbを参照-->
@@ -29,8 +29,8 @@
         <%= f.text_field :postal_code,placeholder: "0001111" %>
       </div>
       <div class = "col-auto">
-        <%= f.label :addresses, "住所" %>
-        <%= f.text_field :addresses,placeholder: "東京都千代田区千代田１−１",:size=>45 %>
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address,placeholder: "東京都千代田区千代田１−１",:size=>45 %>
       </div>
       <div class = "col-auto">
         <%= f.label :telephone_number, "電話番号" %>
@@ -38,13 +38,13 @@
       </div>
       <div class = "col-auto">
         <!--パスワードの文字数を制限するやり方を調べる-->
-        <%= f.label :encrypted_password, "パスワード（6文字以上）" %>
-        <%= f.text_field :encrypted_password %>
+        <%= f.label :password, "パスワード（6文字以上）" %>
+        <%= f.password_field :password %>
       </div>
       <div class = "col-auto">
         <!--パスワードの二重チェックを入れる方法を調べる-->
-        <%= f.label :encrypted_password_confirmation, "パスワード（確認用）" %>
-        <%= f.text_field :encrypted_password_confirmation %>
+        <%= f.label :password_confirmation, "パスワード（確認用）" %>
+        <%= f.password_field :password_confirmation %>
       </div>
 
       <div class = "actions">

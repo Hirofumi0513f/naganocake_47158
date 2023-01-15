@@ -22,7 +22,7 @@ class Customer < ApplicationRecord
   validates :is_deleted, inclusion: {in: [true, false]}
 
   # 名前（「姓」と「名」）のバリデーション/presenceヘルパーで入力必須にする
-  validates :last_namem, presence: true
+  validates :last_name, presence: true
   validates :first_name, presence: true
 
   # フリガナ（「セイ」と「メイ」）のバリデーション/presenceヘルパーで入力必須にする
@@ -36,13 +36,13 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true
 
   # 住所のバリデーション/presenceヘルパーで入力必須にする
-  validates :adresses, presence: true
+  validates :address, presence: true
 
   # 電話番号のバリデーション/presenceヘルパーで入力必須にする
   validates :telephone_number, presence: true
 
   # 顧客側会員登録画面で使用するパスワードのバリデーション
   # confirmationヘルパー：２つのテキストフィールドで受け取る内容が完全一致するかを確認するためのヘルパー。
-  validates :encrypted_password, confirmation: true
-  validates :encrypted_password_confirmation, presence: true
+  validates :password, confirmation: true
+  validates :password_confirmation, presence: true
 end

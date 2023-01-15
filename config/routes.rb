@@ -8,24 +8,26 @@ Rails.application.routes.draw do
       sessions: "admin/sessions"
     }
 
+
   root to: "public/homes#top"
   get '/about', to: "public/homes#about", as: "about"
 
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  namespace :public do
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
-  resources :cart_items, only: [:index, :update, :destroy, :create]
-  delete '/cart_items/destroy_all',to:"cart_items#destroy_all", as: "destroy_all"
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete '/cart_items/destroy_all',to:"cart_items#destroy_all", as: "destroy_all"
 
-  resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
-  get '/customers/unsubscribe',to:"customers#unsubscribe", as: "unsubscribe"
-  patch '/customers/withdrawal',to:"customers#withdrawal", as: "withdrawal"
+    resource :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
+    get '/customers/unsubscribe',to:"customers#unsubscribe", as: "unsubscribe"
+    patch '/customers/withdrawal',to:"customers#withdrawal", as: "withdrawal"
 
-  resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show]
 
-  resources :orders, only: [:new, :create, :index, :show]
-  post '/orders/confilm' , to: "orders#confilm", as: "confilm"
-  get  '/orders/complete', to: "orders#complete", as: "complete"
-
+    resources :orders, only: [:new, :create, :index, :show]
+    post '/orders/confilm' , to: "orders#confilm", as: "confilm"
+    get  '/orders/complete', to: "orders#complete", as: "complete"
+  end
 
 
   namespace :admin do

@@ -4,17 +4,17 @@
   </div>
   <div class = "row">
     <h5>登録情報</h5>
-    <%= link_to "編集する",edit_customer_path(@itemf.id),class: 'btn btn-md btn-success' %>
+    <%= link_to "編集する",edit_public_customers_path,class: 'btn btn-md btn-success' %>
   </div>
   <div class = "row">
     会員一覧表
   </div>
   <div class ="row">
     <h5>配送先</h5>
-    <%= link_to "一覧を見る",addresses_path(@itemf.id),class: 'btn btn-md btn-primary' %>
+    <%= link_to "一覧を見る",public_addresses_path(@customerf.id),class: 'btn btn-md btn-primary' %>
 
     <h5>注文経歴</h5>
-    <%= link_to "一覧を見る",orders_path(@itemf.id),class: 'btn btn-md btn-primary' %>
+    <%= link_to "一覧を見る",public_orders_path(@customerf.id),class: 'btn btn-md btn-primary' %>
   </div>
-  <div
+  <div>
 </div>
