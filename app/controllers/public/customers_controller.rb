@@ -17,18 +17,21 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  # 退会確認用アクション
   def unsubscribe
-
+    @customerf = current_customer
   end
 
+  # 退会のアクション
   def withdrawal
-      # 退会確認用アクション
     @customerf = current_customer
+    # is_deletedカラムをtrueに変更して削除フラグを立てる
     @customerf.update(is_deleted: true)
+    # reset_session：セッション情報を削除するコマンド
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path  
-    
+    redirect_to root_path
+
   end
 
     # 以下ストロングパラメータ

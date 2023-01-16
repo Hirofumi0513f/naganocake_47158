@@ -3,6 +3,8 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  before_action :reject_deleted_customer, only: [:create]
+
   # 顧客ログイン後の遷移先ページの指定
   def after_sign_in_path_for(resource)
     root_path
@@ -35,17 +37,30 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-   def reject_invalid_customer
-    customer = Customer.find_by(email: params[:customer][:email])
-    return unless customer
-
-    return if customer.valid_password?(params[:customer][:password]) && customer.active_for_authentication?
-
-    alert_message = if customer.status == 'withdrawn'
-                     'You have already resigned'
-                   else
-                     'Your account is suspended'
-                   end
-    redirect_to request.referer, alert: alert_message
+  # 会員情報の「論理削除」のための記述。退会後、同じアカウントで利用できないようにする
+  # 論理削除：データ自体は残っているが、「削除」扱いにしていること。データ上からも完全に削除することを「物理削除」という。
+   def reject_customer
+    @customer = Customer.find_by(email: params[:customer][:email])
+    if @customer
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
+        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        # 新規会員登録画面（new_customer_registration）へ遷移させる
+        redirect_to new_customer_registration_path
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    end
    end
 end
+
+# 2023/01/17夜の実装で紐解く
+# https://qiita.com/amiblog/items/625287e1448285163d1eから抜粋
+  def reject_deleted_user
+    @user=User.find_by(email: params[:user][:email])
+    if @user
+      if @user.valid_password?(params[:user][:password]) && @user.is_deleted == true
+        flash[:notice] = "退会済みの為、再登録が必要です。"
+        redirect_to new_customer_registration_path
+      end
+    end
+  end
