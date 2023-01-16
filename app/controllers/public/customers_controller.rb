@@ -18,12 +18,16 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    # 退会確認用アクション
-    @customerf = current_customer
+
   end
 
   def withdrawal
-    
+      # 退会確認用アクション
+    @customerf = current_customer
+    @customerf.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path  
     
   end
 

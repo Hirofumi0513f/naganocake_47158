@@ -1,15 +1,15 @@
 <p id = "notice"></p>
-<div class ="container">
+<div class ="container" style="margin-top:30px">
   <div class ="row">
     <h5 class ="bg-light">会員情報編集</h5>
   </div>
   <div class ="row">
     <%= form_with model: @customerf,url:public_customers_path(@customerf),local:true do |f| %>
-      <di>
+      <div>
         <%= f.label      :full_name,"氏名" %>
         <%= f.text_field :last_name ,placeholder: "姓" %>
         <%= f.text_field :first_name,placeholder: "名" %>
-      </di>
+      </div>
       <div>
         <%= f.label :full_name_kana,"フリガナ" %>
         <%= f.text_field :last_name_kana,placeholder: "セイ" %>
@@ -32,8 +32,10 @@
         <%= f.label :email,"メールアドレス" %>
         <%= f.text_field :email,placeholder: "メールアドレス", :size=>"30" %>
       </div>
-      <div><%= f.submit "編集内容を保存",class:'btn btn-success' %></div>
-      <div>退会（ボタン化予定）</div>
+      <div class ="col-md">
+        <%= f.submit "編集内容を保存",class:'btn btn-success' %>
+        <%= link_to "退会する",public_unsubscribe_path,class:'btn btn-md btn-danger' %>
+      </div>
     <% end %>
   </div>
 </div>
