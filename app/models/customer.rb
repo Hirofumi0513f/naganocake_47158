@@ -44,5 +44,4 @@ class Customer < ApplicationRecord
   # 顧客側会員登録画面で使用するパスワードのバリデーション
   # confirmationヘルパー：２つのテキストフィールドで受け取る内容が完全一致するかを確認するためのヘルパー。
   validates :password, confirmation: true
-  validates :password_confirmation, presence: true
 end
