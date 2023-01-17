@@ -1,2 +1,13 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div calss ="container text-center" style ="margin:50px">
+  <div class ="row　mx-auto">
+    <div class="col-lg-5">
+      <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
+      <%= image_tag @itemf.get_item_image(300,300) %>
+    </div>
+    <div class ="col-lg-7">
+      <%= @itemf.name %>
+      <%= @itemf.introduction %>
+      <%= @itemf.add_tax_price.to_s(:delimited) %>(税込)
+    </div>
+  </div>
+</div>

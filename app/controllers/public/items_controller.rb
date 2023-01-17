@@ -5,5 +5,13 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    @itemf =Item.find(params[:id])
   end
+
+  # 以下ストロングパラメータ
+  # 意図しないデータの登録・更新を防ぐ機能
+  private
+    def item_params
+      params.require(:item).permit(:image, :name, :introduction, :genre_id, :price, :is_active)
+    end
 end

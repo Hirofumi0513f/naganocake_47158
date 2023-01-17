@@ -3,12 +3,16 @@
     <h4 class ="bg-light">商品一覧</h4>
   </div>
   <div class="row">
-    <div class ="col d-flex flex-wrap justify-content-center">
+    <div class ="col-10 d-flex flex-wrap justify-content-center">
       <% @items.each do |item| %>
-        <div>
+        <div class="col-3">
           <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
           <div><%= image_tag item.get_item_image(200,200) %></div>
-          <div><%= item.name %></div>
+          <div>
+              <%= link_to public_item_path(item.id) do %>
+                <%= item.name %>
+              <% end %>
+            </div>
           <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
           <div>¥<%= item.price.to_s(:delimited) %></div>
         </div>
