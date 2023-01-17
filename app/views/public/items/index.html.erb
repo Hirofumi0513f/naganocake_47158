@@ -1,2 +1,22 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class ="container text-center" style ="margin-top:50px">
+  <div class ="row">
+    <h4 class ="bg-light">商品一覧</h4>
+  </div>
+  <div class="row">
+    <div class ="col d-flex flex-wrap justify-content-center">
+      <% @items.each do |item| %>
+        <div>
+          <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
+          <div><%= image_tag item.get_item_image(200,200) %></div>
+          <div><%= item.name %></div>
+          <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
+          <div>¥<%= item.price.to_s(:delimited) %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class ="row mt-5 d-flex justify-content-center">
+    <!--↓ページネーションを表示させるための記述。詳細設定は、app/view/kaminariを参照-->
+    <%= paginate @items %>
+  </div>
+</div>
