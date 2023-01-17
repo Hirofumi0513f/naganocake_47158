@@ -40,6 +40,7 @@ class Public::SessionsController < Devise::SessionsController
   # 会員情報の「論理削除」のための記述。退会後、同じアカウントで利用できないようにする
   # 論理削除：データ自体は残っているが、「削除」扱いにしていること。データ上からも完全に削除することを「物理削除」という。
    def reject_deleted_customer
+    # params[モデル名][カラム名]になっている
     @customer = Customer.find_by(email: params[:customer][:email])
     if @customer
       if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
