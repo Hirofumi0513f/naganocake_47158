@@ -6,6 +6,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @itemf =Item.find(params[:id])
+    @cart_item =CartItem.new
   end
 
   # 以下ストロングパラメータ
