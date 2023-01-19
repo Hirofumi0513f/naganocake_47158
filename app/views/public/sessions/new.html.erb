@@ -8,7 +8,7 @@
   <%= form_with model: @customer,url:session_path(resource_name) do |f| %>
     <div class="col-auto">
       <%= f.label :email,"メールアドレス", size: "10" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "sample@example.co," %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "sample@example.com" %>
     </div>
     <div class="col-auto">
       <%= f.label :password,"パスワード",size: "10" %>
