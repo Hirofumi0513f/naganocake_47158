@@ -22,7 +22,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
+    @cart_item.customer = current_customer
     if @cart_item.save
       flash[:notice] ="Cart_item was successfully created."
       redirect_to public_cart_items_path

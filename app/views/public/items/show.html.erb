@@ -9,7 +9,7 @@
         <%= @itemf.add_tax_price.to_s(:delimited) %>(税込)
       </div>
       <%= form_with model: @cart_item,url:public_cart_items_path,lical:true do |f| %>
-        <%= f.hidden_field :id, :value => @itemf %>
+        <%= f.hidden_field :item_id, :value => @itemf.id %>
         <%= f.select :amount,*[1..15] ,placeholder:"個数選択" %>
         <%= f.submit 'カートに入れる', class:'btn btn-md btn-success' %>
       <% end %>
