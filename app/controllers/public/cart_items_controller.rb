@@ -3,6 +3,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_itemf = CartItem.find(params[:id])
+    @itemf = Item.find(params[:id])
   end
 
   def update
