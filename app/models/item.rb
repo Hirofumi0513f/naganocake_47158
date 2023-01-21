@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  has_many :cart_items, dependent: :destroy
+
   # itemモデルにimage(商品画像)を持たせる
   has_one_attached :image
 
@@ -7,9 +9,9 @@ class Item < ApplicationRecord
   # has_many   :order_detils, dependent: :destory
 
   # 消費税を加えた商品価格のメソッドｓ
-  # round:小数点の切り上げを実施
+  # floor:小数点の切り捨てを実施
   def add_tax_price
-    (self.price * 1.1).round
+    (self.price * 1.1).floor
   end
 
   def get_item_image(width, height)
