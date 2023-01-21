@@ -1,30 +1,43 @@
 <div class ="container" style ="margin:50px">
     <div class ="row">
-        <h5 class ="bg-light">ショッピングカート</h5>
+        <h5 class ="col-3 text-left bg-light">ショッピングカート</h5>
+        <div class ="col-9 text-right">
+            <%= link_to "カートを空にする",public_destroy_all_path, method: :delete, "data-confirm" => "本当に空にしますか？" ,class:'btn btn-md btn-danger' %>
+        </div>
     </div>
-    <div class ="row">
-        <!--初期値を設定-->
-        <% @sum = 0 %>
-        <% @cart_items.each do |cart_item| %>
-            <table class ="table">
-                <thead>
-                    <th>商品名</th>
-                    <th>単価（税込）</th>
-                    <th>数量</th>
-                    <th>小計</th>
-                    <th></th>
-                </thead>
+    <div class ="row" style ="margin-top:20px">
+        <!--合計金額の初期値を設定-->
+        <% @sum_price = 0 %>
+        <table class ="table">
+            <thead class ="bg-light">
+                <th>商品名</th>
+                <th>単価（税込）</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th></th>
+            </thead>
+            <!--カート内に商品があった場合-->
+            <% if @cart_items.present? %>
+                <% @cart_items.each do |cart_item| %>
                 <tbody>
                     <td><%= cart_item.item.name %></td>
                     <td><%= cart_item.item.add_tax_price.to_s(:delimited) %></td>
-                    <td><%= cart_item.amount %></td>
+                    <td>
+                        <%= form_with model: cart_item,url:public_cart_item_path(cart_item),local:true,method: :patch do |f| %>
+                            <%= f.select :amount,*[1..30] %>
+                            <%= f.submit "変更", class:'btn btn-sm btn-success' %>
+                        <% end %>
+                    </td>
                     <td><%= cart_item.sum_of_price.to_s(:delimited) %></td>
-                    <td>削除する</td>
+                    <td>
+                        <%= link_to "削除する" ,public_cart_item_path(cart_item.id), method: :delete, "data-confilm" => "本当にカートから削除しますか？" ,class:'btn btn-md btn-dander' %>
+                    </td>
                 </tbody>
-            </table>
-            <!---->
-            <% @sum += (cart_item.sum_of_price) %>
-        <% end %>
+                    <!--合計金額を計算-->
+                    <% @sum_price += (cart_item.sum_of_price) %>
+                <% end %>
+            <% end %>
+        </table>
     </div>
     <div class ="row">
         <div class ="col-6 text-left">
@@ -32,8 +45,8 @@
         </div>
         <div class ="col-6 text-right">
             <table class ="table">
-                <th class ="bg-light">合計金額</th>
-                <td><%= @sum %></td>
+                <th class ="bg-light text-left">合計金額</th>
+                <td><%= @sum_price.to_s(:delimited) %></td>
             </table>
         </div>
     </div>

@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   namespace :public do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
-    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete '/cart_items/destroy_all',to:"cart_items#destroy_all", as: "destroy_all"
+    resources :cart_items, only: [:index, :update, :destroy, :create]
 
     resource :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
     get '/customers/unsubscribe',to:"customers#unsubscribe", as: "unsubscribe"
