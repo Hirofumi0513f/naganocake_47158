@@ -2,27 +2,23 @@
 #enums:一番初めのみ記載。以後はモデル（テーブル名）から先を記載する
 ja:
   enums:
-    orders:
+    order:
       payment_method:
         credit_card: "クレジットカード"
-        transfer   : "銀行振込"
-
+        transfer: "銀行振込"
       status:
         waiting_for_payment : "入金待ち"
         payment_confirmation: "入金確認"
-        production          : "制作中"
+        production: "制作中"
         shipping_preparation: "発送準備中"
-        sent                : "発送済み"
-
-    order_details:
+        sent: "発送済み"
+    order_detail:
       making_status:
-        cannot_start          : "着手不可"
+        cannot_start: "着手不可"
         waiting_for_production: "制作待ち"
-        production            : "制作中"
-        production_finished   : "制作終了"
-
-# deviseの日本語化の実施
-ja:
+        production: "制作中"
+        production_finished: "制作終了"
+# # deviseの日本語化の実施
   activerecord:
     errors:
       messages:
@@ -203,4 +199,4 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
-    pm: 午後ｓ
+    pm: 午後

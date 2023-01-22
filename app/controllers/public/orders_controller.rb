@@ -30,7 +30,7 @@ class Public::OrdersController < ApplicationController
 
   #注文確認画面のアクション
   def confirm
-    @order = Oreder.new(order_params)
+    @order = Order.new(order_params)
     if params[:order][:address_number] == "1"
     # view で定義している address_number が"1"だったときにこの処理を実行します
     # form_with で @order で送っているので、order に紐付いた address_number となります
@@ -74,7 +74,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :address, :price)
+    params.require(:order).permit(:name, :address, :price, :postal_code)
   end
 
   def address_params
