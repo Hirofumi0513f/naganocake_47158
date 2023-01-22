@@ -3,7 +3,7 @@
     <h5 class ="bg-light">注文情報入力</h5>
   </div>
   <div class ="row">
-    <%= form_with model: @order,url:public_confilm_path,local:true,method: :confilm do |f| %>
+    <%= form_with model: @order,url:public_confirm_path,local:true do |f| %>
       <div>
         <storng>支払方法</storng>
         <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -13,12 +13,37 @@
         <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
       </div>
       <div>
+        <!-- address_number と定義して1～3の番号を confilm に送ります -->
         <strong>お届け先</strong>
-        <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+        <!-- customer テーブルに登録されている住所の場合 -->
+        <%= f.radio_button :address_number, 1 %>
+        <%= f.label :address_number_1, "ご自身の住所" %>
+        <%= current_customer.address %>
+
+        <!-- 登録されたaddressから選んでもらう場合 -->
+        <%= f.radio_button :address_number, 2 %>
+        <%= f.label :address_number_2, "登録済住所から選択" %>
+         <!--registered として current_customer.address.all で取得した id を送る。選択するのは address-->
+        <%= f.collection_select(:registered, current_customer.addresses, :id, :address) %>
+
+        <!-- 新しい住所を追加する場合 -->
+        <%= f.radio_button :address_number, 3 %>
+        <%= f.label :address_number_3, "新しいお届け先" %>
+
+        <%= f.label :postal_code, "郵便番号" %>
+        <%= f.text_field :postal_code %>
+
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address %>
+
+        <%= f.label :address_name, "宛名" %>
+        <%= f.text_field :address_name %>
+      </div>
+      <!-- 選んだデータを送ります -->
+      <div class="row mt-5 d-flex justify-content-center">
+        <%= f.submit "確認画面へ進む",class:'btn btn-md btn-primary' %>
       </div>
     <% end %>
   </div>
-  <div class="row mt-5 d-flex justify-content-center">
-    <%= link_to "確認画面へ進む",public_confilm_path,class:'btn btn-md btn-primary' %>
-  </div>
+
 </div>

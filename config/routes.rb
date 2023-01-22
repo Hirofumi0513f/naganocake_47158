@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     resources :orders, only: [:new, :create, :index, :show]
-    post '/orders/confilm' , to: "orders#confilm", as: "confilm"
+    post '/orders/confirm' , to: "orders#confirm", as: "confirm"
     get  '/orders/complete', to: "orders#complete", as: "complete"
   end
 
