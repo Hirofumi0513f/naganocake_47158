@@ -1,22 +1,56 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<div class ="container" style="margin:20px">
+    <div class ="row">
+        <h5 class ="bg-light">注文情報確認</h5>
+    </div>
+    <div class="row">
+        <div class ="col-9">
+            <table class="table" style="border-collapse: collapse;">
+                <thead class="bg-light">
+                    <th>商品名</th>
+                    <th>単価（税込）</th>
+                    <th>数量</th>
+                    <th>小計</th>
+                </thead>
+                <!-- ユーザーに確認してもらうための表示です -->
+                <% @cart_items.each do |cart| %>
+                    <tbody>
+                        <td><%= cart.item.name %></td>
+                        <td><%= (cart.item.add_tax_price).to_s(:delimited) %> </td>
+                        <td><%= cart.amount %></td>
+                        <td><%= (cart.item.price*cart.amount).to_s(:delimited) %> </td>
+                    </tbody>
+                <% end %>
+            </table>
+        </div>
+        <div class ="col-3">
+            <table class="table" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+                <thead class="bg-light">
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">送料</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品合計</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">請求金額</th>
+                </thead>
+                <tbody>
+                    <!--下記@order_postage/@total/@payment_priceの定義は、app/controllers/orders_controller.rbを参照ください-->
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order_postage.to_s(:delimited) %></td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @total.to_s(:delimited) %></td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @payment_price.to_s(:delimited) %></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p><strong>支払方法</strong></p>
+    <%= @order.payment_method %>
 
-<!-- ユーザーに確認してもらうための表示です -->
-<!--<% @cart_items.each do |cart| %>-->
-<!--  <%= cart.item.name %> <!-- 商品名 -->-->
-<!--  <%= (cart.item.price).to_s(:delimited) %>　<!-- 金額 -->-->
-<!--  <%= cart.amount %> <!-- 個数 -->-->
-<!--  <%= (cart.item.price*cart.amount).to_s(:delimited) %> <!-- 小計 -->-->
-<!--<% end %>-->
-<!--<p>ご請求金額</p>-->
-<!--<%= @total.to_s(:delimited) %> <!-- お買い物の合計金額 -->-->
-<!--<p>お届け先</p>-->
-<!--<%= @order.address %>-->
+    <p><strong>お届け先</strong></p>
+    <%= @order.address %>
 
-<!-- ユーザーには注文確定ボタンだけ表示します -->
-<!--<%= form_with model: @order, url: public_orders_path ,method: :post, local: true do |f| %>-->
-<!--  <%= f.hidden_field :name %>-->
-<!--  <%= f.hidden_field :address %>-->
-<!--  <%= f.hidden_field :total_price, value: @total %>-->
-<!--  <%= f.submit "注文を確定する" %>-->
-<!--<% end %>-->
+    <div class ="row mt-5 d-flex justify-content-center">
+        <!-- ユーザーには注文確定ボタンだけ表示します -->
+        <%= form_with model: @order, url: public_orders_path ,method: :post, local: true do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :total_price, value: @total %>
+          <%= f.submit "注文を確定する",class:"btn btn-md btn-success" %>
+        <% end %>
+    </div>
+</div>

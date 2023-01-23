@@ -60,6 +60,11 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.sum_of_price }
+    # @order_postageで送料の代金を代入
+    @order_postage = 800
+    
+    # 請求金額の定義
+    @payment_price = @total + @order_postage
   end
 
   # 注文完了画面のアクション
