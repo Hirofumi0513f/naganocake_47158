@@ -34,7 +34,8 @@
           <%= f.label :address_number_2, "登録済住所から選択" %><br>
           <div style="margin-left:20px">
             <!--registered として current_customer.address.all で取得した id を送る。選択するのは address_display-->
-            <%= f.collection_select(:registered, current_customer.addresses, :id, :address_display) %>
+            <%= f.collection_select(:registered, current_customer.addresses, :id, :addresses_display) %>
+           <!--%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :addresses_display) %>-->
           </div>
         </div>
         <div style="margin-left:30px" >

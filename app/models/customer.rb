@@ -23,6 +23,11 @@ class Customer < ApplicationRecord
     self.last_name_kana + self.first_name_kana
   end
 
+    #住所（郵便番号＋住所＋氏名のフルネーム「漢字」）
+  def addresses_display
+    '〒'+postal_code+''+address+''+full_name
+  end
+
   # 退会フラグ（is_deleted）のバリデーション設定
   validates :is_deleted, inclusion: {in: [true, false]}
 

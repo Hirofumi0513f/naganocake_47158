@@ -34,8 +34,8 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address_number] == "1"
     # view で定義している address_number が"1"だったときにこの処理を実行します
     # form_with で @order で送っているので、order に紐付いた address_number となります
-      @order.name = current_customer.name
-      @order.address = current_customer.customer_address
+      @order.name = current_customer.full_name
+      @order.address = current_customer.addresses_display
     elsif params[:order][:address_number] == "2"
     # view で定義している address_number が"2"だったときにこの処理を実行します
       if Address.exists?(name: params[:order][:registered])
@@ -59,7 +59,7 @@ class Public::OrdersController < ApplicationController
       redirect_to public_cart_items_path
     end
     @cart_items = current_customer.cart_items
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.sum_of_price }
   end
 
   # 注文完了画面のアクション
