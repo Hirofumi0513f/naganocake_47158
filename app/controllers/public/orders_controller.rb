@@ -31,13 +31,15 @@ class Public::OrdersController < ApplicationController
   #注文確認画面のアクション
   def confirm
     @order = Order.new(order_params)
-    if params[:order][:address_number] == "1"
-    # view で定義している address_number が"1"だったときにこの処理を実行します
-    # form_with で @order で送っているので、order に紐付いた address_number となります
+    # view で定義している address_number が"0"だったときにこの処理を実行します
+    # form_with で @order で送っているので、order に紐付いた address_number となる
+    if params[:order][:address_number] == "0"
+      # ログインユーザーのフルネームを取得
       @order.name = current_customer.full_name
+      # ログインユーザーの住所を定義
       @order.address = current_customer.addresses_display
-    elsif params[:order][:address_number] == "2"
-    # view で定義している address_number が"2"だったときにこの処理を実行します
+    # view で定義している address_number が"1"だったときにこの処理を実行します
+    elsif params[:order][:address_number] == "1"
       if Address.exists?(name: params[:order][:registered])
       # registered は view で定義しています
         @order.name = Address.find(params[:order][:registered]).name
@@ -46,8 +48,8 @@ class Public::OrdersController < ApplicationController
         # 万が一データが足りない場合は new を render します
         render :new
       end
-    # view で定義している address_number が"3"だったときにこの処理を実行します
-    elsif params[:order][:address_number] == "3"
+    # view で定義している address_number が"2"だったときにこの処理を実行します
+    elsif params[:order][:address_number] == "2"
       address_new = current_customer.addresses.new(address_params)
         if address_new.save
         else
@@ -62,7 +64,7 @@ class Public::OrdersController < ApplicationController
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.sum_of_price }
     # @order_postageで送料の代金を代入
     @order_postage = 800
-    
+
     # 請求金額の定義
     @payment_price = @total + @order_postage
   end
@@ -71,10 +73,14 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
+  # 注文履歴画面
   def index
+    @orders = current_customer.orders
   end
 
+  # 注文履歴詳細画面
   def show
+    # @order = Order.find(params[:id])
   end
 
   private

@@ -21,8 +21,8 @@
         <strong>お届け先</strong>
         <div style="margin-left:30px" >
           <!-- customer テーブルに登録されている住所の場合 -->
-          <%= f.radio_button :address_number, 1 ,checked: true %>
-          <%= f.label :address_number_1, "ご自身の住所" %><br>
+          <%= f.radio_button :address_number, 0 ,checked: true %>
+          <%= f.label :address_number_0, "ご自身の住所" %><br>
           <div style="margin-left:20px">
             <%= current_customer.address %><br>
             <%= current_customer.full_name %>
@@ -30,8 +30,8 @@
         </div>
         <div style="margin-left:30px" >
           <!-- 登録されたaddressから選んでもらう場合 -->
-          <%= f.radio_button :address_number, 2 %>
-          <%= f.label :address_number_2, "登録済住所から選択" %><br>
+          <%= f.radio_button :address_number, 1 %>
+          <%= f.label :address_number_1, "登録済住所から選択" %><br>
           <div style="margin-left:20px">
             <!--registered として current_customer.address.all で取得した id を送る。選択するのは address_display-->
             <%= f.collection_select(:registered, current_customer.addresses, :id, :addresses_display) %>
@@ -40,8 +40,8 @@
         </div>
         <div style="margin-left:30px" >
           <!-- 新しい住所を追加する場合 -->
-          <%= f.radio_button :address_number, 3 %>
-          <%= f.label :address_number_3, "新しいお届け先" %><br>
+          <%= f.radio_button :address_number, 2 %>
+          <%= f.label :address_number_2, "新しいお届け先" %><br>
           <div style="margin-left:20px">
             <%= f.label :postal_code, "郵便番号(ハイフンなし)",size: 15 %>
             <%= f.text_field :postal_code ,placeholder: "0000000" %><br>

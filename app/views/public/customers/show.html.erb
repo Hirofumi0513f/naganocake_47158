@@ -1,14 +1,16 @@
-<div class = "container">
+<div class = "container" style="margin:20px">
   <div class = "row">
     <h5 class = "bg-light">マイページ</h5>
   </div>
   <div class = "row">
-    <div class ="col">
-      <h5>登録情報</h5>
-      <%= link_to "編集する",edit_public_customers_path,class: 'btn btn-md btn-success' %>
-    </div>
+    <table class="table table-borderless">
+      <tr>
+        <th>登録情報</th>
+        <td><%= link_to "編集する",edit_public_customers_path,class: 'btn btn-md btn-success' %></td>
+      </tr>
+    </table>
   </div>
-  <table class ="table">
+  <table class ="table table-bordered border-dark">
     <tr>
       <th class ="bg-light">氏名</th>
       <td><%= @customerf.full_name %></td>
@@ -34,16 +36,16 @@
       <td><%= @customerf.email %></td>
     </tr>
   </table>
-  <div class = "row">
-    会員一覧表
-  </div>
   <div class ="row">
-    <h5>配送先</h5>
-    <%= link_to "一覧を見る",public_addresses_path(@customerf.id),class: 'btn btn-md btn-primary' %>
+    <table class="table table-borderless">
+      <tr>
+        <th>配送先</th>
+        <td><%= link_to "一覧を見る",public_addresses_path(@customerf.id),class: 'btn btn-md btn-primary' %></td>
+      </tr>
+      <tr>
+        <th>注文履歴</th>
+        <td><%= link_to "一覧を見る",public_orders_path(@customerf.id),class: 'btn btn-md btn-primary' %></td>
+      </tr>
+    </table>
   </div>
-  <div class ="row">
-    <h5>注文経歴</h5>
-    <%= link_to "一覧を見る",public_orders_path(@customerf.id),class: 'btn btn-md btn-primary' %>
-  </div>
-  <div>
 </div>

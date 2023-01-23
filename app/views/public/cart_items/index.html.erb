@@ -8,7 +8,7 @@
     <div class ="row" style ="margin-top:20px">
         <!--合計金額の初期値を設定-->
         <% @sum_price = 0 %>
-        <table class ="table">
+        <table class ="table table-bordered border-dark">
             <thead class ="bg-light">
                 <th>商品名</th>
                 <th>単価（税込）</th>
@@ -44,7 +44,7 @@
             <%= link_to "買い物を続ける",root_path,class:'btn btn-sm btn-primary' %>
         </div>
         <div class ="col-6 text-right">
-            <table class ="table">
+            <table class ="table table-bordered border-dark">
                 <th class ="bg-light text-left">合計金額</th>
                 <td><%= @sum_price.to_s(:delimited) %></td>
             </table>
