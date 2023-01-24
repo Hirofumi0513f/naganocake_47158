@@ -20,19 +20,19 @@ class Public::OrdersController < ApplicationController
       # Address.exists？：住所が存在しているか？/params[モデル名][カラム名]
       # Address.exists?(id: params[:order][:registered])
       # registered は view で定義しています
-        @order.name = Address.find(params[:order][:registered]).name
-        @order.address = Address.find(params[:order][:registered]).address
         @order.postal_code = Address.find(params[:order][:registered]).postal_code
+        @order.address = Address.find(params[:order][:registered]).address
+        @order.name = Address.find(params[:order][:registered]).name
     # view で定義している address_number が"2"だったときにこの処理を実行します
     elsif params[:order][:address_number] == "2"
       address_new = current_customer.addresses.new
-      address_new.name = params[:order][:address_name]
-      address_new.address = params[:order][:address]
       address_new.postal_code = params[:order][:postal_code]
+      address_new.address = params[:order][:address]
+      address_new.name = params[:order][:address_name]
         if address_new.save
-          @order.name = address_new.name
-          @order.address = address_new.address
           @order.postal_code = address_new.postal_code
+          @order.address = address_new.address
+          @order.name = address_new.name
         else
           # データはユーザーで新規追加してもらうので、入力不足の場合は new に戻します
           render :new
@@ -91,7 +91,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:customer_id,:name, :address, :price, :postal_code, :payment_method, :postage, :status)
+    params.require(:order).permit(:customer_id,:postal_code, :address, :name, :postage, :payment_method, :status, :price)
   end
 
   # def address_params
