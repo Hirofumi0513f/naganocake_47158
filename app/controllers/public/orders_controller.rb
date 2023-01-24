@@ -5,29 +5,6 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def create
-    # ログインしているユーザに紐づく、カートアイテムに入れる
-    cart_items = current_customer.cart_items
-    # ログインしているユーザのオーダー作成
-    @order = current_customer.orders.new(order_params)
-
-    if @order.save
-      cart_items.each do |cart|
-        order_item = OrderItem.new
-        order_item.item_id = cart.item_id
-        order_item.order_id = @order.id
-        order_item.order_price = cart.item.price
-        order_item.save
-      end
-      redirect_to public_confirm_path
-      # ユーザに関連するカートのデータ（購入データ）を全て削除（カートを空にする）
-      cart_items.destroy_all
-    else
-      @order = Order.new(order_params)
-      render:new
-    end
-  end
-
   #注文確認画面のアクション
   def confirm
     @order = Order.new(order_params)
@@ -73,6 +50,31 @@ class Public::OrdersController < ApplicationController
     @payment_price = @total + @order_postage
   end
 
+  def create
+    # ログインしているユーザに紐づく、カートアイテムに入れる
+    cart_items = current_customer.cart_items
+    # ログインしているユーザのオーダー作成
+    @order = current_customer.orders.new(order_params)
+
+    if @order.save
+      cart_items.each do |cart_item|
+        order_item = OrderDetail.new
+        order_item.item_id = cart_item.item_id
+        order_item.order_id = @order.id
+        order_item.price = cart_item.item.price
+        order_item.amount =cart_item.amount
+        order_item.making_status = "cannot_start"
+        order_item.save
+      end
+      redirect_to public_complete_path(@order.id)
+      # ユーザに関連するカートのデータ（購入データ）を全て削除（カートを空にする）
+      cart_items.destroy_all
+    else
+      @order = Order.new(order_params)
+      render:new
+    end
+  end
+
   # 注文完了画面のアクション
   def complete
   end
@@ -89,7 +91,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :address, :price, :postal_code, :payment_method)
+    params.require(:order).permit(:customer_id,:name, :address, :price, :postal_code, :payment_method, :postage, :status)
   end
 
   # def address_params
