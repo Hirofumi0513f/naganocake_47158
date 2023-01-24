@@ -81,12 +81,13 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴画面
   def index
-    @orders = current_customer.orders
+    # ログインユーザーに紐づいているcreated_at(データ作成日時)をdesc（降順)で持ってくる
+    @orders = current_customer.orders.all(created_at :desc)
   end
 
   # 注文履歴詳細画面
   def show
-    # @order = Order.find(params[:id])
+    @order = current_customer.orders.find(params[:id])
   end
 
   private
