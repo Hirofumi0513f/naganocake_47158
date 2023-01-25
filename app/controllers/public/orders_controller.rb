@@ -84,7 +84,8 @@ class Public::OrdersController < ApplicationController
     # ログインユーザーに紐づいているcreated_atをdesc（降順)で持ってくる
     # current_customer.ordersで情報（データ）を持ってきている。
     # .order:DB処理を整理するための指定。今回の場合は(created_at: :desc)を指定して整理している。
-    @orders = current_customer.orders.order(created_at: :desc)
+    # .page(params[:page]).per(10):ページネーションで１ページあたり10件表示させる
+    @orders = current_customer.orders.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   # 注文履歴詳細画面

@@ -31,4 +31,8 @@
       <% end %>
     </table>
   </div>
+  <div class ="row mt-5 d-flex justify-content-center">
+    <!--↓ページネーションを表示させるための記述。詳細設定は、app/view/kaminariを参照-->
+    <%= paginate @orders %>
+  </div>
 </div>
