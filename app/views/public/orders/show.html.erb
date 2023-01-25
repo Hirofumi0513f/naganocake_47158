@@ -12,7 +12,13 @@
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">支払方法</th>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ステータス</th>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <!--l（localize）エイリアスメソッド。具体的な日本語化の表示方法は、config/locales/ja.ymlを参照-->
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= l @order.created_at ,format: :long %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.addresses_display %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.payment_method_i18n %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.status_i18n %></td>
+        </tbody>
       </table>
     </div>
     <div class="col-5">
@@ -23,6 +29,11 @@
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">配送料</th>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ご請求額</th>
         </thead>
+        <tbody>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%#= @order.current_customer.cart_item.sum_of_price.to_s(:delimited) %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.postage %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.price.to_s(:delimited) %></td>
+        </tbody>
       </table>
     </div>
   </div>
@@ -35,7 +46,14 @@
         <th>個数</th>
         <th>小計</th>
       </thead>
-      <tbody></tbody>
+      <% @order.order_details.each do |order_details| %>
+        <tbody>
+          <td><%= order_details.item.name %></td>
+          <td><%= order_details.item.add_tax_price.to_s(:delimited) %></td>
+          <td><%= order_details.amount %></td>
+          <td><%= (order_details.item.add_tax_price*order_details.amount).to_s(:delimited) %></td>
+        </tbody>
+      <% end %>
     </table>
   </div>
 </div>
