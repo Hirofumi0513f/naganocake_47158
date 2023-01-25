@@ -5,5 +5,8 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many   :order_details, dependent: :destroy
 
+  def addresses_display
+    '〒'+postal_code+''+address+''+name
+  end
 
 end

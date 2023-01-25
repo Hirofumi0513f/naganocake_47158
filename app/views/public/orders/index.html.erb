@@ -12,16 +12,22 @@
         <th>ステータス</th>
         <th>注文詳細</th>
       </thead>
-      <!--%　@orders.each do |order| %-->
+      <% @orders.each do |order| %>
         <tbody>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><%#= link_to "表示する",public_order_path,class:"btn btn-sm btn-primary" %></td>
+          <td><%= order.created_at %></td>
+          <td><%= order.addresses_display %></td>
+          <td>
+          <% order.order_details.each do |order_details| %>
+            <%= order_details.item.name %><br>
+          <% end %>
+          </td>
+          <!--.to_s(:delimited)で桁区切り表示-->
+          <td><%= order.price.to_s(:delimited) %></td>
+          <!--_i18nステータスのenumを日本語化させる記述-->
+          <td><%= order.status_i18n %></td>
+          <td><%= link_to "表示する",public_order_path(order.id),class:"btn btn-sm btn-primary" %></td>
         </tbody>
-      <!--% end %-->
+      <% end %>
     </table>
   </div>
 </div>

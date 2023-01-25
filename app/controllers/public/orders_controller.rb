@@ -75,14 +75,16 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-  # 注文完了画面のアクション
+  # 注文完了画面
   def complete
   end
 
-  # 注文履歴画面
+  # 注文履歴一覧画面
   def index
-    # ログインユーザーに紐づいているcreated_at(データ作成日時)をdesc（降順)で持ってくる
-    @orders = current_customer.orders.all(created_at :desc)
+    # ログインユーザーに紐づいているcreated_atをdesc（降順)で持ってくる
+    # current_customer.ordersで情報（データ）を持ってきている。
+    # .order:DB処理を整理するための指定。今回の場合は(created_at: :desc)を指定して整理している。
+    @orders = current_customer.orders.order(created_at: :desc)
   end
 
   # 注文履歴詳細画面
