@@ -21,5 +21,8 @@ module Naganocake
 
     # 以下で日本語化の設定をする
     config.i18n.default_locale = :ja
+
+    # タイムゾーンを日本に指定
+    config.time_zone = 'Tokyo'
   end
 end
