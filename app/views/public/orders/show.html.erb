@@ -1,2 +1,41 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container" style="margin:20px">
+  <div class="row" style="margin:20px">
+    <h5 class="bg-light">注文履歴詳細</h5>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <p class="col-3 bg-light">注文情報</p>
+      <table class="table table-bordered border-dark" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+        <thead class="bg-light">
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">注文日</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">配送先</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">支払方法</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ステータス</th>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="col-5">
+      <p class="col-3 bg-light">請求情報</p>
+      <table class="table table-bordered border-dark" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+        <thead class="bg-light">
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品合計</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">配送料</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ご請求額</th>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="row" style="margin:20px">
+    <p class="bg-light">注文内容</p>
+    <table class="table table-bordered border-dark" style="border-collapse: collapse;">
+      <thead class="bg-light">
+        <th>商品</th>
+        <th>単価（税込）</th>
+        <th>個数</th>
+        <th>小計</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
