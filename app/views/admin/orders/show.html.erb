@@ -1,8 +1,8 @@
 <div class = "container">
-  <div class = "row">
-    <h4 class = "bg-light"><%=@orderf.customer.full_name %>さんの注文履歴詳細</h4>
+  <div class = "row" style="margin-top:20px">
+    <h4 class = "bg-light"><%=@orderf.customer.full_name %>さんの注文履歴</h4>
   </div>
-  <table class="table table-bordered border-bg" style="margin:20px" >
+  <table class="table table-bordered border-bg offset-1" style="margin:20px" >
     <thead class="bg-light">
       <th>購入日時</th>
       <th>注文個数</th>
@@ -17,5 +17,6 @@
       <td><%= @orderf.status_i18n %></td>
     </tbody>
   </table>
+    </div>
 </div>
 

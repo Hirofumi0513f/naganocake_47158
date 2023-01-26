@@ -2,24 +2,23 @@
 <html>
   <head>
     <title>Naganocake</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
+  <body>
+    <header>
       <nav class = "nabver navber-expand-lg navbar-dark bg-dark">
         <div class = "container">
-          <%= link_to root_path, class:'navbar-brand p-3' do %>
+          <%= link_to new_admin_session_path, class:'navbar-brand p-1' do %>
             <i class = 'fas fa-store'></i>
-            <span>LOGO</span>
           <% end %>
-           <%= link_to new_admin_session_path, class:'navbar-brand' do %>
-            <span>（admin_signed_in画面へ最終的には削除/レイアウトも最後に修正）</span>
+          <%= link_to root_path, class:'navbar-brand p-3' do %>
+            <span>Naganocake</span>
           <% end %>
           <button class ="navbar-toggler" type ="button" data-toggle ="collapse" data-target ="#navbarNavDropdown" aria-controls ="navbarNavDropdown" aria-expanded ="false" aria-label ="Toggle navigation">
             <span class ="navbar-toggler-icon"></span>
