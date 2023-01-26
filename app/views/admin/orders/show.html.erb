@@ -1,2 +1,21 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <h4 class = "bg-light"><%=@orderf.customer.full_name %>さんの注文履歴詳細</h4>
+  </div>
+  <table class="table table-bordered border-bg" style="margin:20px" >
+    <thead class="bg-light">
+      <th>購入日時</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </thead>
+    <tbody>
+      <td><%= l @orderf.created_at,format: :long %></td>
+      <% @orderf.order_details.each do |order_details| %>
+        <% @total_amount +=(order_details.amount) %>
+      <% end %>
+      <td><%= @total_amount %></td>
+      <td><%= @orderf.status_i18n %></td>
+    </tbody>
+  </table>
+</div>
+

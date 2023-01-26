@@ -17,7 +17,7 @@
                     <tr>
                         <td>
                             <!--購入日時を押下することで、注文履歴詳細（更新）画面へ遷移させる-->
-                            <%= link_to admin_order_detail_path(order.id),method: :patch do %>
+                            <%= link_to admin_order_path(order.id) do %>
                                 <%= l order.created_at,format: :long %>
                             <% end %>
                         </td>
