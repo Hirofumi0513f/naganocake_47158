@@ -1,5 +1,21 @@
 <div class = "container">
   <div class = "row">
-    <h4 class = "bg-light">注文履歴詳細</h4>
+    <h4 class = "bg-light"><%=@order_detailsf.customer.full_name %>さんの注文履歴詳細</h4>
   </div>
+  <table class="table table-bordered border-bg" style="margin:20px" >
+    <thead class="bg-light">
+      <th>購入日時</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </thead>
+    <% @order_detailsf.each do |customer_order_details| %>
+    <tbody>
+      <td><%= l customer_order_details.created_at,format: :long %></td>
+      <% customer_order_details.order_details.each do |order_details| %>
+        <% @total_amount +=(order_details.amount) %>
+      <td><%= @total_amount %></td>
+      <td><%= customer_order_details.status_i18n %></td>
+    </tbody>
+    <% end %>
+  </table>
 </div>

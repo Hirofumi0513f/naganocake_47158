@@ -1,20 +1,20 @@
-<div class = "container text-center" style ="margin:50px">
-  <div class = "row">
-      <h5 class = "bg-light">管理者ログイン</h5>
-  </div>
-  <div class ="row">
+<div class = "container" style ="margin:50px">
+  <div class ="row" style="margin-top:30px">
     <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h5 class = "col-5 bg-light">管理者ログイン</h5>
       <%= form_for(resource, as: resource_name, url: admin_session_path) do |f| %>
-        <div class="field">
-          <%= f.label :email,"メールアドレス" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder:"sample@example.com" %>
-        </div>
-        <div class="field">
-          <%= f.label :password,"パスワード" %>
-          <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "ログイン", class:'btn btn-sm btn-primary' %>
+      <table class="table table-borderless">
+        <tr>
+          <th class="col-6"><%= f.label :email,"メールアドレス" %></th>
+          <td class="col-6"><%= f.email_field :email, autofocus: true, autocomplete: "email" ,placeholder:"sample@example.com" ,size: "30" %></td>
+        </tr>
+        <tr>
+          <th calss="col-6"><%= f.label :password,"パスワード",size: "10" %></th>
+          <td class="col-6"><%= f.password_field :password, autocomplete: "current-password" ,size: "30" %></td>
+        </tr>
+      </table>
+        <div class="rows d-flex justify-content-center">
+          <%= f.submit "ログイン", class:'btn btn-md btn-primary' %>
         </div>
       <% end %>
     <%= render "admin/shared/links" %>
