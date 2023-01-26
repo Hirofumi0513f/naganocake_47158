@@ -91,6 +91,7 @@ class Public::OrdersController < ApplicationController
   # 注文履歴詳細画面
   def show
     @order = current_customer.orders.find(params[:id])
+    @total = 0
   end
 
   private

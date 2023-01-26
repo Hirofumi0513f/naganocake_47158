@@ -30,7 +30,7 @@
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ご請求額</th>
         </thead>
         <tbody>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= (@order.price-@order.postage).to_s(:delimited) %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= (@order.price - @order.postage).to_s(:delimited) %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.postage %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.price.to_s(:delimited) %></td>
         </tbody>
@@ -52,6 +52,7 @@
           <td><%= order_details.item.add_tax_price.to_s(:delimited) %></td>
           <td><%= order_details.amount %></td>
           <td><%= (order_details.item.add_tax_price*order_details.amount).to_s(:delimited) %></td>
+          <% @total += (order_details.item.add_tax_price*order_details.amount) %>
         </tbody>
       <% end %>
     </table>
