@@ -2,19 +2,19 @@
 <html>
   <head>
     <title>Naganocake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
       <nav class = "nabver navber-expand-lg navbar-dark bg-dark">
         <div class = "container">
-          <%= link_to root_path, class:'navbar-brand' do %>
+          <%= link_to root_path, class:'navbar-brand p-3' do %>
             <i class = 'fas fa-store'></i>
             <span>LOGO</span>
           <% end %>
@@ -27,81 +27,81 @@
           <div class = "collapse navbar-collapse" id="navbarNavDropdown">
             <ul class ="navbar-nav ml-auto">
               <% if request.fullpath.include?("/admin") && admin_signed_in? %>
-                <li>
+                <li class="nav-item">
                   <%= link_to admin_items_path ,class:'nav-link text-light' do %>
                     <i class = "fas fa-sharp fa-solid fa-store"></i>
                     商品一覧
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to admin_customers_path,class:'nav-link text-light' do  %>
                     <i class = "fas fa-sharp fa-solid fa-users"></i>
                     会員一覧
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to admin_root_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-clipboard'></i>
                     注文履歴一覧
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to admin_genres_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-code-branch'></i>
                     ジャンル一覧
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to destroy_admin_session_path,class:'nav-link text-light' ,method: :delete do %>
                     <i class = 'fas fa-sign-out-alt'></i>
                     ログアウト
                   <% end %>
                 </li>
               <% elsif customer_signed_in? %>
-                <li>
+                <li class="nav-item">
                   <%= link_to public_customers_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-id-card'></i>
                     マイページ
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to public_items_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-store'></i>
                     商品一覧
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%=link_to public_cart_items_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-cart-arrow-down'></i>
                     カート
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to destroy_customer_session_path,class:'nav-link text-light' ,method: :delete do %>
                     <i class = 'fas fa-sign-out-alt'></i>
                     ログアウト
                   <% end %>
                 </li>
               <% else %>
-                <li>
+                <li class="nav-item">
                   <%= link_to about_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-link'></i>
                     About
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to public_items_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-sharp fa-solid fa-store'></i>
                     商品一覧
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to new_customer_registration_path,class:'nav-link text-light' do %>
                     <i class = "fas fa-user-plus"></i>
                     新規登録
                   <% end %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to new_customer_session_path,class:'nav-link text-light' do %>
                     <i class = "fas fa-sign-in-alt"></i>
                     ログイン
@@ -113,7 +113,7 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="mb-auto">
       <%= notice %>
       <%= yield %>
     </main>
