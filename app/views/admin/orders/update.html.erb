@@ -18,10 +18,49 @@
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @orderf.payment_method_i18n %></td>
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
           <%= form_with model: order,url:admin_order_path(order),local:true,method: :patch do |f| %>
-            <%= f.select :payment_method_i18n,*[注文ステータスを記載] %>
+            <%= f.select :payment_method,Order.payment_methods.keys.map{ |k| [t("enum.order.payment_method.#{k}"), k] },{include_blank:"指定なし"},class:"mb-3 sm:mb-0 mr-9 border-line-200 round-[3px] py-3 pl-6 w-52 h-12 font-bold" %>
             <%= f.submit "更新", class:'btn btn-sm btn-success' %>
           <% end %>
         </td>
+      </tbody>
+    </table>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <table class="table table-bordered border-dark">
+      <thead class="bg-light">
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+        <th></th>
+      </thead>
+      <% @orderf.order_details.each do |order_details| %>
+      <tbody>
+        <td><%= order_details.item.name %></td>
+        <td><%= order_details.item.add_tax_price.to_s(:delimited) %></td>
+        <td><%= order_details.amount %></td>
+        <td><%= (order_details.item.add_tax_price*order_details.amount).to_s(:delimited) %></td>
+        <% @total += (order_details.item.add_tax_price*order_details.amount) %>
+        <td>
+          <%= form_with model: order,url:admin_order_path(order),local:true,method: :patch do |f| %>
+            <%= f.select :status,Order.statuses.keys.map{ |k| [t("enum.order.status.#{k}"), k] },{include_blank:"指定なし"},class:"mb-3 sm:mb-0 mr-9 border-line-200 round-[3px] py-3 pl-6 w-52 h-12 font-bold" %>
+            <%= f.submit "更新", class:'btn btn-sm btn-success' %>
+          <% end %>
+        </td>
+      </tbody>
+      <% end %>
+    </table>
+    <table class="table table-bordered border-dark" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+      <thead>
+        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></th>
+        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></th>
+        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></th>
+      </thead>
+      <tbody>
+        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">円</td>
+        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">円</td>
+        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">円</td>
       </tbody>
     </table>
   </div>

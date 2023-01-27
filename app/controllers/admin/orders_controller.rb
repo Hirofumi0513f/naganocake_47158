@@ -9,6 +9,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @orderf = Order.find(params[:id])
+     @total = 0
     if @orderf.update(order_params)
       flash[:notice] ="Order updated successfully."
       redirect_to admin_order_path(order.id)
