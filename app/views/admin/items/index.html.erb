@@ -1,13 +1,16 @@
 <div class = "container text-center" style="margin:50px">
   <div class ="row">
-    <h4 class = "bg-light">商品一覧</h4>
-      <button type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">
+    <div class="col-2 text-left">
+      <h4 class = "bg-light">商品一覧</h4>
+    </div>
+    <div class="col-10 text-right">
+      <button type="button" class="btn btn-default rounded-circle p-0" style="width:2rem;height:2rem;">
         <%= link_to new_admin_item_path do %>
-          <span class = "text-white">+</span>
+          <span class = "text-dark">+</span>
         <% end %>
       </button>
-
-      <table class = "table">
+    </div>
+      <table class = "table table-bordered border-bg" style="margin:20px">
         <thead class ="bg-light">
           <tr>
             <th>商品ID</th>
@@ -15,7 +18,6 @@
             <th>税抜価格</th>
             <th>ジャンル</th>
             <th>ステータス</th>
-            <th colspan = "6"></th>
           </tr>
         </thead>
         <tbody>
@@ -41,8 +43,10 @@
         <% end %>
         </tbody>
       </table>
-        <!--↓ページネーションを表示させるための記述。詳細設定は、app/view/kaminariを参照-->
-        <%= paginate @items %>
+  </div>
+  <div class ="row mt-5 d-flex justify-content-center">
+    <!--↓ページネーションを表示させるための記述。詳細設定は、app/view/kaminariを参照-->
+    <%= paginate @items %>
   </div>
 </div>
 
