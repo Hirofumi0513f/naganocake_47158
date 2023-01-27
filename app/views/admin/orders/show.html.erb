@@ -1,6 +1,7 @@
 <div class = "container">
   <div class = "row" style="margin-top:20px">
     <h4 class = "bg-light"><%=@orderf.customer.full_name %>さんの注文履歴</h4>
+    <%= link_to "遷移テスト",admin_order_path(@orderf),method: :patch %>
   </div>
   <table class="table table-bordered border-bg offset-1" style="margin:20px" >
     <thead class="bg-light">

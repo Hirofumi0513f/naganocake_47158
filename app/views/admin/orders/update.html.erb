@@ -18,7 +18,7 @@
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @orderf.payment_method_i18n %></td>
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
           <%= form_with model: order,url:admin_order_path(order),local:true,method: :patch do |f| %>
-            <%= f.select :payment_method,Order.payment_methods.keys.map{ |k| [t("enum.order.payment_method.#{k}"), k] },{include_blank:"指定なし"},class:"mb-3 sm:mb-0 mr-9 border-line-200 round-[3px] py-3 pl-6 w-52 h-12 font-bold" %>
+            <%= f.select :status, Order.statuses_i18n.invert, {prompt: false},class:"form-control-sm col-6" %>
             <%= f.submit "更新", class:'btn btn-sm btn-success' %>
           <% end %>
         </td>
@@ -43,8 +43,8 @@
         <td><%= (order_details.item.add_tax_price*order_details.amount).to_s(:delimited) %></td>
         <% @total += (order_details.item.add_tax_price*order_details.amount) %>
         <td>
-          <%= form_with model: order,url:admin_order_path(order),local:true,method: :patch do |f| %>
-            <%= f.select :status,Order.statuses.keys.map{ |k| [t("enum.order.status.#{k}"), k] },{include_blank:"指定なし"},class:"mb-3 sm:mb-0 mr-9 border-line-200 round-[3px] py-3 pl-6 w-52 h-12 font-bold" %>
+          <%= form_with model: order_details,url:admin_order_path(order),local:true,method: :patch do |f| %>
+            <%= f.select :marking_status,Order_details.marking_statuses_i18n.invert, {prompt: false},class:"form-control-sm col-6" %>
             <%= f.submit "更新", class:'btn btn-sm btn-success' %>
           <% end %>
         </td>
