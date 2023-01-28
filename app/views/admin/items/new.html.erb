@@ -14,33 +14,33 @@
     </div>
     <div class="row mx-auto">
         <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-            <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
-                <thead>
-                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品画像</th>
-                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品名</th>
-                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品説明</th>
-                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ジャンル</th>
-                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">税抜価格</th>
-                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">販売ステータス</th>
-                </thead>
-                <tbody>
-                    <!--local: ture→通常のHTTPリクエストし、ページ全体をリロードさせるコマンド？-->
-                    <%= form_with model: @item,url:admin_items_path,local:true do |f| %>
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.file_field :image, accept: "image/*" %></td>
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :name,placeholder: "商品名" ,size: "35" %></td>
-                    <!--cols =>:横サイズ指定、rows =>：縦サイズ指定-->
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_area :introduction,placeholder: "ここに説明文を記述します" , :cols =>35, :rows =>5 %></td>
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.select :genre_id, [["ケーキ",1], ["プリン",2], ["焼き菓子",3], ["キャンディ",4]], include_blank: "------------選択してください------------" %></td>
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :price,placeholder: "1,000",size: "35" %> 円</td>
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-                        <%= f.radio_button :is_active, :false, checked: true %>
-                        <%= f.label :is_active, "販売中", {value: :false, style:"display: inline-block"} %>
-                        &emsp;&emsp;
-                        <%= f.radio_button :is_active, :true %>
-                        <%= f.label :is_active, "売切れ", {value: :true, style:"display: inline-block"} %>
-                    </td>
-                </tbody>
-            </table>
+            <!--local: ture→通常のHTTPリクエストし、ページ全体をリロードさせるコマンド？-->
+            <%= form_with model: @item,url:admin_items_path,local:true do |f| %>
+                <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+                    <thead class="col-3">
+                        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品画像</th>
+                        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品名</th>
+                        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">商品説明</th>
+                        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">ジャンル</th>
+                        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">税抜価格</th>
+                        <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">販売ステータス</th>
+                    </thead>
+                    <tbody class="col">
+                        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.file_field :image, accept: "image/*" %></td>
+                        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :name,placeholder: "商品名" ,size: "35" %></td>
+                        <!--cols =>:横サイズ指定、rows =>：縦サイズ指定-->
+                        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_area :introduction,placeholder: "ここに説明文を記述します" , :cols =>35, :rows =>5 %></td>
+                        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.select :genre_id, [["ケーキ",1], ["プリン",2], ["焼き菓子",3], ["キャンディ",4]], include_blank: "------------選択してください------------" %></td>
+                        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :price,placeholder: "1,000",size: "35" %> 円</td>
+                        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+                            <%= f.radio_button :is_active, :false, checked: true %>
+                            <%= f.label :is_active, "販売中", {value: :false, style:"display: inline-block"} %>
+                            &emsp;&emsp;
+                            <%= f.radio_button :is_active, :true %>
+                            <%= f.label :is_active, "売切れ", {value: :true, style:"display: inline-block"} %>
+                        </td>
+                    </tbody>
+                </table>
         </div>
     </div>
     <div class ="row mt-5 d-flex justify-content-center">
