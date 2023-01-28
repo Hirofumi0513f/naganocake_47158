@@ -1,62 +1,70 @@
 <!--顧客側「新規会員登録画面」-->
-<div class = "container">
-  <div class = "row">
-    <!--新規会員登録ページのタイトル-->
-    <h5 class = "bg-light">新規会員登録</h5>
+<div class="container text-center" style="marigin:30px">
+  <div class="row mx-auto" style="margin-top:20px">
+    <h4 class="bg-light">新規会員登録</h4>
   </div>
-  <div class = "form-row align-items-center">
-    <%= form_with model: @customer,url:customer_registration_path , local: true do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
-      <div class = "col-auto">
-          <!--full_nameの定義は、app/models/customer.rbを参照-->
-          <%= f.label :full_name,"名前" %>
-          <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
-          (姓)<%= f.text_field :last_name,autocomplete: "last_name",placeholder: "姓" %>
-          <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
-          (名)<%= f.text_field :first_name,autocomplete: "first_name",placeholder: "名" %>
-      </div>
-      <div class = "col-auto">
-        <%= f.label :full_name_kana, "フリガナ" %>
-        (セイ)<%= f.text_field :last_name_kana,autocomplete: "last_name_kana",placeholder: "セイ" %>
-        (メイ)<%= f.text_field :first_name_kana,autocomplete: "first_name_kana",placeholder: "メイ" %>
-      </div>
-      <div class = "col-auto">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.text_field :email,autocomplete: "email",placeholder: "sample@example.com" %>
-      </div>
-      <div class = "col-auto">
-        <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
-        <%= f.text_field :postal_code,placeholder: "0001111" %>
-      </div>
-      <div class = "col-auto">
-        <%= f.label :address, "住所" %>
-        <%= f.text_field :address,placeholder: "東京都千代田区千代田１−１",:size=>45 %>
-      </div>
-      <div class = "col-auto">
-        <%= f.label :telephone_number, "電話番号" %>
-        <%= f.text_field :telephone_number,placeholder: "00011112222" %>
-      </div>
-      <div class = "col-auto">
-        <!--パスワードの文字数を制限するやり方を調べる-->
-        <%= f.label :password, "パスワード（6文字以上）" %>
-        <%= f.password_field :password %>
-      </div>
-      <div class = "col-auto">
-        <!--パスワードの二重チェックを入れる方法を調べる-->
-        <%= f.label :password_confirmation, "パスワード（確認用）" %>
-        <%= f.password_field :password_confirmation %>
-      </div>
-
-      <div class = "actions">
-        <%= f.submit "新規登録", class:'btn btn-sm btn-success' %>
-      </div>
-    <% end %>
+  <div class="row" style="margin-top:20px">
+    <!--<div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">-->
+      <%= form_with model: @customer,url:customer_registration_path , local: true do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+          <thead class="col-3">
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--full_nameの定義は、app/models/customer.rbを参照-->
+              <%= f.label :full_name,"名前" %>
+            </th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :full_name_kana, "フリガナ" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :email, "メールアドレス" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :address, "住所" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :telephone_number, "電話番号" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :password, "パスワード（6文字以上）" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :password_confirmation, "パスワード（確認用）" %></th>
+          </thead>
+          <tbody class="col-9 text-left">
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
+              (姓)　<%= f.text_field :last_name,autocomplete: "last_name",placeholder: "姓" %>
+              &emsp;&emsp;
+              <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
+              (名)　<%= f.text_field :first_name,autocomplete: "first_name",placeholder: "名" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              (セイ)<%= f.text_field :last_name_kana,autocomplete: "last_name_kana",placeholder: "セイ" %>
+              &emsp;&emsp;
+              (メイ)<%= f.text_field :first_name_kana,autocomplete: "first_name_kana",placeholder: "メイ" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.text_field :email,autocomplete: "email",placeholder: "sample@example.com" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.text_field :postal_code,placeholder: "0001111" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.text_field :address,placeholder: "東京都千代田区千代田１−１",:size=>50 %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.text_field :telephone_number,placeholder: "00011112222" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.password_field :password %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.password_field :password_confirmation %>
+            </td>
+          </tbody>
+        </table>
+        <div class = "actions">
+          <%= f.submit "新規登録", class:'btn btn-md btn-success' %>
+        </div>
+      <% end %>
+    <!--</div>-->
   </div>
-  <div class = "row">
+  <div class = "row" style="margin-top:30px">
     <!--「こちら」からnew_customer_session_pathに遷移させる-->
     <h5 class = "bg-light">既に登録済みの方</h5>
   </div>
-  <div class = "row">
+  <div class = "row offset-1">
     <%= link_to"こちら",new_customer_session_path %>　からログインしてください。
   </div>
 </div>
