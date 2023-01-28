@@ -21,7 +21,12 @@
                                 <%= l order.created_at,format: :long %>
                             <% end %>
                         </td>
-                        <td><%= order.customer.full_name %></td>
+                        <td>
+                        <!--ユーザごとの注文一覧画面/url(カラム名：渡したいデータ)do-->
+                        <%= link_to admin_orders_path(customer_id: order.customer.id) do %>
+                            <%= order.customer.full_name %>
+                         <% end %>
+                        </td>
                         <% order.order_details.each do |order_details| %>
                             <% @total_amount +=(order_details.amount) %>
                         <% end %>

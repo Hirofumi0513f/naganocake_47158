@@ -1,22 +1,30 @@
 class Admin::OrdersController < ApplicationController
   def show
-    @orderf = Order.find(params[:id])
-    @total_amount = 0
+    @order = Order.find(params[:id])
+    @total = 0
 
     # .page(params[:page]).per(10):ページネーションで１ページあたり10件表示させる
     @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def update
-    @orderf = Order.find(params[:id])
+    @order = Order.find(params[:id])
      @total = 0
-    if @orderf.update(order_params)
+    if @order.update(order_params)
       flash[:notice] ="Order updated successfully."
-      redirect_to admin_order_path(order.id)
+      redirect_to admin_order_path(@order)
     else
       reder :show
     end
   end
+
+  def index
+    @customer = Customer.find(params[:customer_id])
+    @orders = @customer.orders
+
+    @total_amount = 0
+  end
+
 
   private
   def order_params
