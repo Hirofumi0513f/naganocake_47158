@@ -5,35 +5,35 @@
   <div class= "row">
     <table class="table table-borderless">
       <tr>
-        <th class="col-1">登録情報</th>
-        <td class="col-11"><%= link_to "編集する",edit_public_customers_path,class: 'btn btn-md btn-success' %></td>
+        <th class="col-1" style="font-size:20px">登録情報</th>
+        <td class="col-8"><%= link_to "編集する",edit_public_customers_path,class: 'btn btn-md btn-success' %></td>
       </tr>
     </table>
   </div>
-  <table class="table table-bordered border-dark">
+  <table class="table table-bordered border-dark" style="padding-right:100px">
     <tr>
       <th class="col-2 bg-light">氏名</th>
-      <td class="col-10"><%= @customerf.full_name %></td>
+      <td class="col-5"><%= @customerf.full_name %></td>
     </tr>
     <tr>
       <th class="col-2 bg-light">カナ</th>
-      <td class="col-10"><%= @customerf.full_name_kana %></td>
+      <td class="col-5"><%= @customerf.full_name_kana %></td>
     </tr>
     <tr>
       <th class="col-2 bg-light">郵便番号</th>
-      <td class="col-10"><%= @customerf.postal_code %></td>
+      <td class="col-5"><%= @customerf.postal_code %></td>
     </tr>
     <tr>
       <th class="col-2 bg-light">住所</th>
-      <td class="col-10"><%= @customerf.telephone_number %></td>
+      <td class="col-5"><%= @customerf.telephone_number %></td>
     </tr>
     <tr>
       <th class="col-2 bg-light">電話番号</th>
-      <td class="col-10"><%= @customerf.telephone_number %></td>
+      <td class="col-5"><%= @customerf.telephone_number %></td>
     </tr>
     <tr>
       <th class="col-2 bg-light">メールアドレス</th>
-      <td class="col-10"><%= @customerf.email %></td>
+      <td class="col-5"><%= @customerf.email %></td>
     </tr>
   </table>
   <div class="row">
