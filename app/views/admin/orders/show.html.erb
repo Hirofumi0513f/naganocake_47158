@@ -12,7 +12,11 @@
         <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">注文ステータス</th>
       </thead>
       <tbody>
-        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.customer.full_name %></td>
+        <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+          <%= link_to admin_customer_path(@order.customer.id) do %>
+            <%= @order.customer.full_name %>
+          <% end %>
+        </td>
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= l @order.created_at ,format: :long %></td>
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.addresses_display %></td>
         <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @order.payment_method_i18n %></td>
@@ -43,8 +47,8 @@
         <td><%= (order_details.item.add_tax_price*order_details.amount).to_s(:delimited) %></td>
         <% @total += (order_details.item.add_tax_price*order_details.amount) %>
         <td>
-          <%= form_with model: order_details,url:admin_order_path(order_details),local:true,method: :patch do |f| %>
-            <%= f.select :making_status,OrderDetail.making_statuses_i18n.invert, {prompt: false},class:"form-control-sm col-6" %>
+          <%= form_with model: order_details,url:admin_order_detail_path(order_details),local:true,method: :patch do |f| %>
+            <%= f.select :making_status,OrderDetail.making_statuses_i18n.invert, {prompt: false},class:"form-control-sm col-7" %>
             <%= f.submit "更新", class:'btn btn-sm btn-success' %>
           <% end %>
         </td>

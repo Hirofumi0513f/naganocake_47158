@@ -2,7 +2,6 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @total = 0
-
     # .page(params[:page]).per(10):ページネーションで１ページあたり10件表示させる
     @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -14,7 +13,7 @@ class Admin::OrdersController < ApplicationController
       flash[:notice] ="Order updated successfully."
       redirect_to admin_order_path(@order)
     else
-      reder :show
+      render :show
     end
   end
 
