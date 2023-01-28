@@ -19,15 +19,15 @@
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.file_field :image, accept: "image/*" %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :name,placeholder: "商品名",size: "35" %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_area :introduction,placeholder: "ここに説明文を記述します" , :cols =>35, :rows =>5 %></td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.select :genre_id, [["ケーキ",1], ["プリン",2], ["焼き菓子",3], ["キャンディ",4]], include_blank: "------------選択してください------------" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.select :genre_id, [["ケーキ",1], ["プリン",2], ["焼き菓子",3], ["キャンディ",4]], include_blank: "-----------選択してください-----------" %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :price,placeholder: "1000",size: "35" %> 円</td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
             <!--ラジオボタンで「販売中」「販売停止中」を選べるようにする-->
             <%= f.radio_button :is_active, :false, checked: true %>
             <%= f.label :is_active, "販売中", {value: :false, style:"display: inline-block"} %>
-
+            &emsp;&emsp;
             <%= f.radio_button :is_active, :true %>
-            <%= f.label :is_active, "売切れ", {value: :true, style:"display: inline-block"} %>
+            <%= f.label :is_active, "販売停止中", {value: :true, style:"display: inline-block"} %>
           </td>
         </tbody>
       </table>

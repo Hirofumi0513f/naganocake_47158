@@ -1,5 +1,5 @@
-<div class = "container text-center" style ="margin:30px">
-    <div class="row mx-auto" style="margin:60px">
+<div class = "container text-center" style ="margin:50px">
+    <div class="row mx-auto" style="margin:30px">
         <h4 class = "bg-light">商品新規登録</h4>
         <!--新規登録が失敗した際のエラーメッセージの表示記述-->
         <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
@@ -12,7 +12,7 @@
             </ul>
         <% end %>
     </div>
-    <div class="row">
+    <div class="row mx-auto">
         <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
             <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
                 <thead>
@@ -31,11 +31,11 @@
                     <!--cols =>:横サイズ指定、rows =>：縦サイズ指定-->
                     <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_area :introduction,placeholder: "ここに説明文を記述します" , :cols =>35, :rows =>5 %></td>
                     <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.select :genre_id, [["ケーキ",1], ["プリン",2], ["焼き菓子",3], ["キャンディ",4]], include_blank: "------------選択してください------------" %></td>
-                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :price,placeholder: "1000",size: "35" %> 円</td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :price,placeholder: "1,000",size: "35" %> 円</td>
                     <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
                         <%= f.radio_button :is_active, :false, checked: true %>
                         <%= f.label :is_active, "販売中", {value: :false, style:"display: inline-block"} %>
-
+                        &emsp;&emsp;
                         <%= f.radio_button :is_active, :true %>
                         <%= f.label :is_active, "売切れ", {value: :true, style:"display: inline-block"} %>
                     </td>

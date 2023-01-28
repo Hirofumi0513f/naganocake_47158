@@ -19,12 +19,12 @@ class Admin::OrdersController < ApplicationController
   end
 
   def index
+    # .page(params[:page]).per(10):ページネーションで１ページあたり10件表示させる
     @customer = Customer.find(params[:customer_id])
-    @orders = @customer.orders
-
+    # find whereで取ってこれるデータの形式が異なる
+    @orders = Order.where(customer_id: @customer.id).page(params[:page]).per(10)
     @total_amount = 0
   end
-
 
   private
   def order_params
