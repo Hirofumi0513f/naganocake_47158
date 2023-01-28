@@ -21,7 +21,7 @@ class Admin::OrdersController < ApplicationController
     # .page(params[:page]).per(10):ページネーションで１ページあたり10件表示させる
     @customer = Customer.find(params[:customer_id])
     # find whereで取ってこれるデータの形式が異なる
-    @orders = Order.where(customer_id: @customer.id).page(params[:page]).per(10)
+    @orders = Order.where(customer_id: @customer.id).order(created_at: :desc).page(params[:page]).per(10)
     @total_amount = 0
   end
 
