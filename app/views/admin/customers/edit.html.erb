@@ -1,55 +1,47 @@
 <p id = "notice"></p>
-<div class = "container">
-  <div class = "row">
+<div class = "container" style="margin">
+  <div class = "row mx-auto">
     <!--会員編集ページのタイトル-->
     <h5 class = "bg-light"><%= @customerf.full_name %>さんの会員情報編集</h5>
   </div>
   <!--会員編集画面の詳細-->
   <div class = "row">
-    <%= form_with model: @customerf,url:admin_customer_path(@customerf),local:true do |f| %>
-      <div>
-        <%= f.label :id,"会員ID" %>
-        <%= @customerf.id %>
-      </div>
-      <di>
-        <%= f.label      :full_name,"氏名" %>
-        <%= f.text_field :last_name ,placeholder: "姓" %>
-        <%= f.text_field :first_name,placeholder: "名" %>
-      </di>
-      <div>
-        <%= f.label :full_name_kana,"フリガナ" %>
-        <%= f.text_field :last_name_kana,placeholder: "セイ" %>
-        <%= f.text_field :first_name_kana,placeholder: "メイ"%>
-      </div>
-      <div>
-        <%= f.label :postal_code,"郵便番号" %>
-        <%= f.text_field :postal_code,placeholder: "郵便番号" %>
-      </div>
-      <div>
-        <%= f.label :address,"住所" %>
-        <!--:size=>"〇〇"でtext_fieldの大きさを調整している-->
-        <%= f.text_field :address,placeholder: "住所", :size=>"50" %>
-      </div>
-      <div>
-        <%= f.label :telephone_number,"電話番号" %>
-        <%= f.text_field :telephone_number,placeholder: "電話番号" %>
-      </div>
-      <div>
-        <%= f.label :email,"メールアドレス" %>
-        <%= f.text_field :email,placeholder: "メールアドレス", :size=>"30" %>
-      </div>
-      <div>
-        <%= f.label :is_deleted,"会員ステータス" %>
-        <!--ラジオボタンで「有効」「退会」を選べるようにする-->
-        <%= f.radio_button :is_deleted, :false, checked: true %>
-        <%= f.label :is_deleted, "有効", {value: :false, style:"display: inline-block"} %>
-
-        <%= f.radio_button :is_deleted, :true %>
-        <%= f.label :is_deleted, "退会", {value: :true, style:"display: inline-block"} %>
-      </div>
-      <div>
+    <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+        <thead class="col-3">
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">会員ID</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">氏名</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">フリガナ</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">郵便番号</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">住所</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">電話番号</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">メールアドレス</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">会員ステータス</th>
+        </thead>
+        <tbody class="col-9">
+        <%= form_with model: @customerf,url:admin_customer_path(@customerf),local:true do |f| %>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @customerf.id %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :last_name ,placeholder: "姓", :size=>"25" %>&emsp;&emsp;<%= f.text_field :first_name,placeholder: "名", :size=>"25" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :last_name_kana,placeholder: "セイ", :size=>"25" %>&emsp;&emsp;<%= f.text_field :first_name_kana,placeholder: "メイ", :size=>"25" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :postal_code,placeholder: "郵便番号", :size=>"25" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :address,placeholder: "住所", :size=>"50" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :telephone_number,placeholder: "電話番号", :size=>"25" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.text_field :email,placeholder: "メールアドレス", :size=>"25" %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+            <!--ラジオボタンで「有効」「退会」を選べるようにする-->
+            <%= f.radio_button :is_deleted, :false, checked: true %>
+            <%= f.label :is_deleted, "有効", {value: :false, style:"display: inline-block"} %>
+            <!--&emsp;→空白（スペース）を入れる-->
+            &emsp;&emsp;
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会", {value: :true, style:"display: inline-block"} %>
+          </td>
+        </tbody>
+      </table>
+      <div class="row mt-5 d-flex justify-content-center">
         <%= f.submit "変更を保存", class: 'btn btn-success' %>
       </div>
-    <% end %>
+        <% end %>
+    </div>
   </div>
 </div>
