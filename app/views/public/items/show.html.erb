@@ -1,18 +1,25 @@
-<div calss ="container text-center" style ="margin:50px">
-  <div class ="row　mx-auto">
-    <div class="col-md-5">
+<div calss ="container mx-auto" style ="margin:20px">
+  <div class ="row mt-5 d-flex justify-content-center" style="margin:20px">
+    <div class="col-2 px-5 px-sm-0">
       <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
       <div><%= image_tag @itemf.get_item_image(300,300) %></div>
+    </div>
+    <div class="col-2 px-5 px-sm-0">
+      <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+        <!--<tbody>-->
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap; font-size:30px"><storong><%= @itemf.name %></storong></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @itemf.introduction %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">¥<%= @itemf.add_tax_price.to_s(:delimited) %>(税込)</td>
+        <!--</tbody>-->
+      </table>
       <div>
-        <%= @itemf.name %>
-        <%= @itemf.introduction %>
-        <%= @itemf.add_tax_price.to_s(:delimited) %>(税込)
+        <%= form_with model: @cart_item,url:public_cart_items_path,lical:true do |f| %>
+          <%= f.hidden_field :item_id, :value => @itemf.id %>
+          <%= f.select :amount,*[1..15] ,placeholder:"個数選択" %>
+          &emsp;&emsp;
+          <%= f.submit 'カートに入れる', class:'btn btn-md btn-success' %>
+        <% end %>
       </div>
-      <%= form_with model: @cart_item,url:public_cart_items_path,lical:true do |f| %>
-        <%= f.hidden_field :item_id, :value => @itemf.id %>
-        <%= f.select :amount,*[1..15] ,placeholder:"個数選択" %>
-        <%= f.submit 'カートに入れる', class:'btn btn-md btn-success' %>
-      <% end %>
     </div>
   </div>
 </div>
