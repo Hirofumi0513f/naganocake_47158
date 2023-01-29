@@ -18,7 +18,11 @@
       <% @items.each do |item| %>
         <div>
           <!--get_item_image(width, height)は、app/assets/models/item.rbに定義している-->
-          <div><%= image_tag item.get_item_image(200,200) %></div>
+          <div>
+            <%= link_to public_item_path(item.id) do %>
+              <%= image_tag item.get_item_image(200,200) %>
+            <% end %>
+          </div>
           <p><%= item.name %></p>
           <!--to_s(:delimited):3桁ごとにカンマ区切りで表示させるメソッド-->
           <p>¥<%= item.price.to_s(:delimited) %></p>
